@@ -1,11 +1,15 @@
 import NavBar from "./componets/NavBar"
-import { Outlet } from "react-router-dom"
+import { Outlet , useLocation} from "react-router-dom"
 
 const App = () => {
 
+  const location = useLocation();
+  const hideNavBarRoutes=["/login","/register"];
+
+  const shouldHideNavBar = hideNavBarRoutes.includes(location.pathname);
   return (
     <div>
-      <NavBar />
+      {!shouldHideNavBar && <NavBar/>}
       <main>
         <Outlet />
       </main>

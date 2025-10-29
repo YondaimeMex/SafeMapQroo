@@ -5,19 +5,19 @@ const NavBar = () =>{
     <>
 
     <nav className="w-full">
-        <div className='flex justify-between items-center border-1 border-red-800 '>   
+        <div className='flex justify-between items-center border-1 border-pink-950 '>   
             {/*Logo*/}
-            <div className='flex items-center gap-2'>
+            <div className='flex items-center gap-2 pl-10'>
                 <img className='w-30 h-18'  src="/src/assets/COEPROC-qqb0ndq3et1dbmhtmnkfpkpr29q8y7hl323ch5e59k.png"/>
-                <p className='text-l text-red-800'>SafeMapQroo</p>
+                <p className='text-l text-pink-950'>SafeMapQroo</p>
             </div>
             {/*Menu*/}
             <div>
-                <ul className="flex items-center gap-6 text-black-600">
+                <ul className="flex items-center gap-6 text-black-600 mr-10">
                     {
                         navbarLinks.map((item) => (
                             <li key={item.id}>
-                                <a className='inline-block hover:text-white hover:bg-red-800 rounded-lg px-3 py-1' href={item.link}>{item.title}</a>
+                                <a className='inline-block hover:text-white hover:bg-pink-800 rounded-lg px-3 py-1' href={item.link}>{item.title}</a>
                             </li>
                         ))
                     }
