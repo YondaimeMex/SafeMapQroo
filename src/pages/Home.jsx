@@ -1,9 +1,9 @@
-
+import MapView from "../componets/MapView";
 const Home = () => {
 
     return(
         <>
-            <h1>Aqui ira el Home</h1>
+            <MapView />
         </>
 )}
 
