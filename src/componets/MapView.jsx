@@ -21,7 +21,13 @@ export default function MapView() {
         />
 
         {/* Example marker */}
-        <Marker position={mapCenter}>
+        <Marker position={[21.1619, -86.8515]}>
+          <Popup>Descripcion de la localizacion</Popup>
+        </Marker>
+        <Marker position={[21.1729, -86.8925]}>
+          <Popup>Descripcion de la localizacion</Popup>
+        </Marker>
+        <Marker position={[21.1729, -86.8225]}>
           <Popup>Descripcion de la localizacion</Popup>
         </Marker>
       </MapContainer>
