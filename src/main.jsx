@@ -7,6 +7,7 @@ import Information from './pages/Information.jsx'
 import Contact from './pages/Contact.jsx'
 import Login from './pages/Login.jsx'
 import Register from './pages/Register.jsx'
+import Dashboard from './pages/Dashboard.jsx'
 import './index.css'
 
 
@@ -21,6 +22,7 @@ createRoot(document.getElementById('root')).render(
           <Route path='/contact' element={<Contact/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/register' element={<Register/>}/>
+          <Route path='/dash' element={<Dashboard/>}/>
         </Route>  
       </Routes>    
     </BrowserRouter>

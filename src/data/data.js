@@ -23,5 +23,10 @@ export const navbarLinks =[
         id: 5,
         title: "Registrarse",
         link: "register"
+    },
+    {
+        id: 6,
+        title: "Dashboard",
+        link: "dash"
     }
 ]
