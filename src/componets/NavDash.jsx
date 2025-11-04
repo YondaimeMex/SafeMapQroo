@@ -4,7 +4,7 @@ const NavDash= () =>{
 
     return(
         <>
-        <nav className="bg-pink-800 w-[20vw] h-[100vh]">
+        <nav className="bg-pink-800 w-[20vw] h-full">
         <div className="my-10 block"> 
             <img className="mx-auto rounded-full" src="/src/assets/logogob.jpg" alt="" />
             <h2 className="my-4 text-3xl text-center text-white">Gabriel Perez Torres</h2>

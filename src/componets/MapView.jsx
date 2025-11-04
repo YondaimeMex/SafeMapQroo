@@ -8,7 +8,7 @@ export default function MapView({variant = "full"
   const longitude = -86.8515;
   const mapCenter = [latitude, longitude];
   const mapZoom = 13;
-  const sizeClass = variant=== "full" ? "w-full h-[calc(100vh-80px)] md:h-[calc(100vh-100px)]": "w-[500px] h-[500px]"
+  const sizeClass = variant=== "full" ? "w-full h-[calc(100vh-80px)] md:h-[calc(100vh-100px)]": "w-[500px] h-[400px]"
 
 
   return (

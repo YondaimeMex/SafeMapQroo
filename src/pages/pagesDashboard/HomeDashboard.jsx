@@ -1,6 +1,6 @@
+import InfoShelterView from "../../componets/InfoShelterView";
 import MapView from "../../componets/MapView";
 import SheltersState from "../../componets/SheltersState";
-import Shelter from "./Shelter";
 import "leaflet/dist/leaflet.css";
 
 const HomeDashboard = () =>{
@@ -10,12 +10,11 @@ const HomeDashboard = () =>{
         <div>
             <SheltersState/>
         </div>
-
         <div className="flex m-15">
-            <section>
-                <Shelter/>
+            <section className="shadow-2xl rounded-lg overflow-y-auto h-[400px] border-3 border-rose-700 p-4">
+                <InfoShelterView/>
             </section>
-            <section className="shadow-2xl rounded-lg m-7 h-[500px] w-[500px]">
+            <section className="ml-6 shadow-2xl rounded-lg  overflow-y-auto h-[400px] w-[500px]">
                 <MapView variant="small"/>
             </section>
         </div>
