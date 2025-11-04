@@ -1,3 +1,4 @@
+import './index.css'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter,Routes,Route } from 'react-router-dom'
@@ -8,12 +9,16 @@ import Contact from './pages/Contact.jsx'
 import Login from './pages/Login.jsx'
 import Register from './pages/Register.jsx'
 import Dashboard from './pages/Dashboard.jsx'
-import './index.css'
+
+import HomeDashboard from './pages/pagesDashboard/HomeDashboard.jsx'
+import Shelter from './pages/pagesDashboard/Shelter.jsx'
+
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
+    {/*Route Main*/}
       <Routes>
         <Route path="/" element={<App/>} >
           <Route index element={<Home/>}/> 
@@ -22,9 +27,14 @@ createRoot(document.getElementById('root')).render(
           <Route path='/contact' element={<Contact/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/register' element={<Register/>}/>
-          <Route path='/dash' element={<Dashboard/>}/>
-        </Route>  
-      </Routes>    
+        </Route>
+        {/*Route Dashboard*/}
+        <Route path='dash' element={<Dashboard/>}>
+          <Route index element={<HomeDashboard/>}/>
+          <Route path='/dash/shelter' element={<Shelter/>}/>
+          
+        </Route>
+      </Routes>
     </BrowserRouter>
 
   </StrictMode>

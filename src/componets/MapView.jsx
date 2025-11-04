@@ -1,18 +1,22 @@
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
-export default function MapView() {
+export default function MapView({variant = "full"
+}) {
   // Map configuration
   const latitude = 21.1619;
   const longitude = -86.8515;
   const mapCenter = [latitude, longitude];
   const mapZoom = 13;
+  const sizeClass = variant=== "full" ? "w-full h-[calc(100vh-80px)] md:h-[calc(100vh-100px)]": "w-[500px] h-[500px]"
+
+
   return (
-    <div className="w-full flex justify-center items-center">
+    <div className="flex justify-center items-center">
       <MapContainer
         center={mapCenter}
         zoom={mapZoom}
-        className="w-full h-[calc(100vh-80px)] md:h-[calc(100vh-100px)] rounded-2xl shadow-lg overflow-hidden"
+        className={`${sizeClass} rounded-2xl shadow-lg overflow-hidden`}
       >
         {/* Base map tiles */}
         <TileLayer

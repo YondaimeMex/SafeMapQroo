@@ -11,21 +11,11 @@ export const navbarLinks =[
     },
     {
         id: 3,
-        title: "Contactos de Emergencia",
-        link: "contact"
-    },
-    {
-        id: 4,
         title: "Iniciar Sesión",
         link: "login"
     },
     {
-        id: 5,
-        title: "Registrarse",
-        link: "register"
-    },
-    {
-        id: 6,
+        id: 4,
         title: "Dashboard",
         link: "dash"
     }
