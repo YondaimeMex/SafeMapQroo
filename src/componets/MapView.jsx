@@ -11,9 +11,16 @@ const markers = [
   { lat: 21.14589, lng: -86.83421, title: "Mercado 28" }
 ];
 
-export default function MapView() {
+export default function MapView({ size = "normal" }) {
+  
+  // Condición de clases según el tamaño
+  const containerClass =
+    size === "small"
+      ? "relative w-full h-80"
+      : "relative w-full h-[90vh]";
+
   return (
-    <div className="relative w-full h-[90vh]">
+    <div className={containerClass}>
       <MapContainer
         center={centerPosition}
         zoom={12}
@@ -23,13 +30,16 @@ export default function MapView() {
           url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
           attribution='&copy; <a href="https://carto.com/attributions">CARTO</a> &copy; OpenStreetMap contributors'
         />
+
         <SearchBar />
         <LocateButton />
+
         {markers.map((m, i) => (
           <Marker key={i} position={[m.lat, m.lng]}>
             <Popup>{m.title}</Popup>
           </Marker>
         ))}
+
         <UserLocation />
       </MapContainer>
     </div>

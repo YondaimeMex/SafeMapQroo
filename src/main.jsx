@@ -8,11 +8,7 @@ import Information from './pages/Information.jsx'
 import Contact from './pages/Contact.jsx'
 import Login from './pages/Login.jsx'
 import Register from './pages/Register.jsx'
-import Dashboard from './pages/Dashboard.jsx'
-
-import HomeDashboard from './pages/pagesDashboard/HomeDashboard.jsx'
-import Shelter from './pages/pagesDashboard/Shelter.jsx'
-
+import Dashboard from './Dashboard.jsx'
 
 
 createRoot(document.getElementById('root')).render(
@@ -27,12 +23,7 @@ createRoot(document.getElementById('root')).render(
           <Route path='/contact' element={<Contact/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/register' element={<Register/>}/>
-        </Route>
-        {/*Route Dashboard*/}
-        <Route path='dash' element={<Dashboard/>}>
-          <Route index element={<HomeDashboard/>}/>
-          <Route path='/dash/shelter' element={<Shelter/>}/>
-          
+          <Route path='/dash' element={<Dashboard/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
