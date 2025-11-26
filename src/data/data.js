@@ -1,13 +1,14 @@
 export const navbarLinks =[
-    {
+    {   
+
         id: 1,
         title: "Inicio",
-        link: "home"
+        link: "info"
     },
     {
         id: 2,
-        title: "Información",
-        link: "info"
+        title: "Mapa de albergues",
+        link: "home"
     },
     {
         id: 3,

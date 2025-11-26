@@ -1,23 +1,169 @@
 export const mockShelters = [
-  { id: "S01", name: "Albergue Las Palapas", address: "Av. Tulum 123, SM 22, Cancún", capacity: 80, occupied: 45, phone: "+52 998 123 4567", notes: "Cercano al parque Las Palapas.", lat: 21.17018, lng: -86.82748 },
-
-  { id: "S02", name: "Refugio Kabah", address: "Av. Nichupté 22, SM 51, Cancún", capacity: 60, occupied: 52, phone: "+52 998 234 5678", notes: "Frente al Parque Kabah.", lat: 21.14252, lng: -86.82286 },
-
-  { id: "S03", name: "Casa Azul Cancún", address: "Calle Chichén Itzá 45, SM 26, Cancún", capacity: 40, occupied: 20, phone: "+52 998 345 6789", notes: "Acepta mascotas pequeñas.", lat: 21.15972, lng: -86.83315 },
-
-  { id: "S04", name: "Hogar La Esperanza", address: "Av. López Portillo 301, SM 64, Cancún", capacity: 120, occupied: 110, phone: "+52 998 456 7890", notes: "Área amplia para familias.", lat: 21.16971, lng: -86.84587 },
-
-  { id: "S05", name: "Refugio Bonampak", address: "Av. Bonampak 210, SM 4, Cancún", capacity: 55, occupied: 33, phone: "+52 998 567 8901", notes: "Incluye zona de descanso.", lat: 21.16921, lng: -86.81210 },
-
-  { id: "S06", name: "Centro Comunitario Nader", address: "Calle Nader 17, SM 2A, Cancún", capacity: 70, occupied: 42, phone: "+52 998 678 9012", notes: "Ubicación céntrica.", lat: 21.16316, lng: -86.82252 },
-
-  { id: "S07", name: "Albergue Jardines del Sur", address: "Av. 135, SM 524, Cancún", capacity: 90, occupied: 55, phone: "+52 998 789 0123", notes: "Ideal para familias.", lat: 21.08808, lng: -86.84522 },
-
-  { id: "S08", name: "Refugio Kukulkán", address: "Av. Kukulkán Km 3.5, Zona Hotelera", capacity: 45, occupied: 28, phone: "+52 998 890 1234", notes: "Cerca de playa Tortugas.", lat: 21.15250, lng: -86.80710 },
-
-  { id: "S09", name: "Centro Integral Cancún", address: "Calle 20, SM 68, Cancún", capacity: 100, occupied: 60, phone: "+52 998 901 2345", notes: "Espacio multipropósito.", lat: 21.17281, lng: -86.85302 },
-
-  { id: "S10", name: "Casa Comunitaria Región 100", address: "Av. Chac Mool 500, SM 100, Cancún", capacity: 75, occupied: 48, phone: "+52 998 012 3456", notes: "Incluye área médica básica.", lat: 21.15799, lng: -86.88790 },
+   { 
+    id: "1", 
+    name: "Eva Sámano De López Mateos", 
+    address: "CELUL ENTRE CHICOZAPOTE Y 30 DE NOVIEMBRE", 
+    capacity: 150, 
+    occupied: 0, 
+    phone: "Sin datos", 
+    notes: "Para cualquier problemática medio ambiental, pet friendly", 
+    lat: 18.530106, 
+    lng: -88.286588 
+  },
+  { 
+    id: "2", 
+    name: "CENTRO DE BACHILLERATO TECNOLOGICO INDUSTRIAL Y DE SERVICIOS NUM. 214", 
+    address: "AVENIDA HERIBERTO FRIAS NUM. 652", 
+    capacity: 100, 
+    occupied: 0, 
+    phone: "Sin datos", 
+    notes: "Para cualquier problemática medio ambiental", 
+    lat: 18.525172, 
+    lng: -88.275033 
+  },
+  { 
+    id: "3", 
+    name: "ESC. PRIM. RAFAEL RAMIREZ CASTAÑEDA", 
+    address: "AV. 5 ENTRE CALLE 12 Y 14", 
+    capacity: 120, 
+    occupied: 0, 
+    phone: "Sin datos", 
+    notes: "Para cualquier problemática medio ambiental", 
+    lat: 18.67418, 
+    lng: -88.39239 
+  },
+  { 
+    id: "4", 
+    name: "ESC. SEC. VICENTE GUERRERO", 
+    address: "CALLE 14 ENTRE AV. 7 Y 9", 
+    capacity: 75, 
+    occupied: 0, 
+    phone: "Sin datos", 
+    notes: "Para cualquier problemática medio ambiental", 
+    lat: 18.674234, 
+    lng: -88.392651 
+  },
+  { 
+    id: "5", 
+    name: "ESC. SEC. TEC JOSE MA. LUIS MORA", 
+    address: "Calle 80 s/n entre calle 61 y 67", 
+    capacity: 390, 
+    occupied: 0, 
+    phone: "Sin datos", 
+    notes: "Para cualquier problemática medio ambiental, pet friendly", 
+    lat: 19.575708, 
+    lng: -88.038204 
+  },
+  { 
+    id: "6", 
+    name: "ESC. SEC. LEONA VICARIO", 
+    address: "Av. Lazaro Caredenas #117 por calle 56 y 60", 
+    capacity: 240, 
+    occupied: 0, 
+    phone: "Sin datos", 
+    notes: "Para cualquier problemática medio ambiental, pet friendly", 
+    lat: 19.581647, 
+    lng: -88.049918 
+  },
+  { 
+    id: "7", 
+    name: "ESC. SEC. TV. ERICK PAOLO MARTINEZ", 
+    address: "CALLE JÚPITER SUR SN Y AV. TULUM", 
+    capacity: 200, 
+    occupied: 0, 
+    phone: "Sin datos", 
+    notes: "Para cualquier problemática medio ambiental", 
+    lat: 20.2094367, 
+    lng: -87.4657483 
+  },
+  { 
+    id: "8", 
+    name: "ESC. PRIM. OCTAVIANO SOLIS AGUIRRE", 
+    address: "OSIRIS NORTE SN Y 2 ORIENTE", 
+    capacity: 200, 
+    occupied: 180, 
+    phone: "Sin datos", 
+    notes: "Para cualquier problemática medio ambiental", 
+    lat: 20.21353, 
+    lng: -87.46331 
+  },
+  { 
+    id: "9", 
+    name: "ESC. PREESC. NIÑOS HEROES", 
+    address: "Av. Constituyentes del 47 y Calle 47 Santiago Pacheco", 
+    capacity: 180, 
+    occupied: 180, 
+    phone: "Sin datos", 
+    notes: "Para cualquier problemática medio ambiental", 
+    lat: 19.748395, 
+    lng: -88.70565 
+  },
+  { 
+    id: "10", 
+    name: "ESC. PRIM. BENITO JUAREZ", 
+    address: "C.BENITO JUAREZ ESQ.SANTIAGO PACHECO", 
+    capacity: 240, 
+    occupied: 0, 
+    phone: "Sin datos", 
+    notes: "Para cualquier problemática medio ambiental", 
+    lat: 19.7490166, 
+    lng: -88.7061472 
+  },
+  { 
+    id: "11", 
+    name: "ESCUELA PRIMARIA RAMÓN OSORIO Y OSORIO", 
+    address: "CARR. COSTERA DEL GOLFO 295", 
+    capacity: 100, 
+    occupied: 0, 
+    phone: "Sin datos", 
+    notes: "Para cualquier problemática medio ambiental", 
+    lat: 20.870763, 
+    lng: -87.602543 
+  },
+  { 
+    id: "12", 
+    name: "ALBERGUE \"\"BENITO JUÁREZ\"\"", 
+    address: "GRAL. RAFAEL E. MELGAR", 
+    capacity: 60, 
+    occupied: 0, 
+    phone: "Sin datos", 
+    notes: "Para cualquier problemática medio ambiental", 
+    lat: 21.10656, 
+    lng: -87.484999 
+  },
+  { 
+    id: "13", 
+    name: "PRIMARIA JUAN PABLO SABIDO SOSA", 
+    address: "Calle 46 entre 27-A", 
+    capacity: 120, 
+    occupied: 0, 
+    phone: "Sin datos", 
+    notes: "Para cualquier problemática medio ambiental", 
+    lat: "Sin datos", 
+    lng: "Sin datos" 
+  },
+  { 
+    id: "14", 
+    name: "ESC. PRIM. GUADALUPE VICTORIA", 
+    address: "Calle 45 No. 412 entre 26-D y 28 periférico", 
+    capacity: 80, 
+    occupied: 0, 
+    phone: "Sin datos", 
+    notes: "Para cualquier problemática medio ambiental", 
+    lat: "Sin datos", 
+    lng: "Sin datos" 
+  },
+  { 
+    id: "15", 
+    name: "ESC. SEC. N° 6 \"\"JOSÉ ESQUIVEL PREN\"\"", 
+    address: "Calle 108 No. 919 entre 81 y Av. Internacional", 
+    capacity: 120, 
+    occupied: 0, 
+    phone: "Sin datos", 
+    notes: "Para cualquier problemática medio ambiental", 
+    lat: "Sin datos", 
+    lng: "Sin datos" 
+  },
 ];
 
 export const mockEmployees = [

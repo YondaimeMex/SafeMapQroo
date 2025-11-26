@@ -1,5 +1,7 @@
 
 import React, { useState } from "react";
+import { navbarLinks } from "../data/data"
+import { Link } from "react-router-dom";
 
 export default function Information() {
   const tipsBefore = [
@@ -132,7 +134,15 @@ export default function Information() {
       {/* ENCABEZADO */}
       <header className="bg-pink-800 shadow-xl border-b border-white/20">
         <div className="max-w-6xl mx-auto px-4 py-8">
-          <h1 className="text-4xl font-extrabold">Huracanes en Quintana Roo</h1>
+          <div className="flex">
+              <h1 className="text-4xl font-extrabold">Huracanes en Quintana Roo</h1>
+              <Link
+            className="ml-96 bg-pink-700 text-white px-4 py-2 rounded-lg hover:bg-pink-800"
+            to={"/home"}
+            >
+            Ir a los albregues cercanos
+          </Link>
+          </div>
           <p className="text-white/90 mt-2 max-w-2xl">
             Información preventiva, recomendaciones de Protección Civil y medidas
             básicas para protegerte a ti y a tu familia en caso de ciclones y huracanes.
@@ -247,6 +257,8 @@ export default function Information() {
               <strong>CONAGUA / SMN:</strong> monitoreo oficial de ciclones tropicales.
             </li>
           </ul>
+
+
         </section>
 
         {/* INFOGRAFÍAS OFICIALES */}

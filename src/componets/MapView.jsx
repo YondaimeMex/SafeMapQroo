@@ -33,20 +33,19 @@ export default function MapView({ size = "normal" }) {
         className="w-full h-full rounded-xl shadow-lg"
       >
         <TileLayer
-          url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+          url="https://tile.openstreetmap.org/{z}/{x}/{y}{r}.png"
           attribution='&copy; <a href="https://carto.com/attributions">CARTO</a> &copy; OpenStreetMap contributors'
         />
 
-        <SearchBar />
         <LocateButton />
 
         {shelters.map((m, i) => (
-          <Marker key={i} position={[m.latitude, m.longitude]}>
+          <Marker key={i} position={[m.latitude, m.longitude]}
+            eventHandlers={{ click: () => console.log("click") }}>
             <Popup>{m.name}</Popup>
           </Marker>
         ))}
 
-        <UserLocation />
       </MapContainer>
     </div>
   );

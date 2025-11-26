@@ -1,6 +1,7 @@
 import { useMap } from "react-leaflet";
 import { useState } from "react";
 import L from "leaflet";
+import UserLocation from "./UserLocation";
 
 export default function LocateButton() {
   const map = useMap();
@@ -8,21 +9,41 @@ export default function LocateButton() {
 
   const handleLocate = () => {
     setLoading(true);
-    map.locate().on("locationfound", (e) => {
-      map.flyTo(e.latlng, 14);
-      setLoading(false);
-    }).on("locationerror", () => {
-      alert("No se pudo obtener tu ubicación");
-      setLoading(false);
+
+    // Ubicación estática en latitud y longitud
+    
+    const lat = 21.049706925680244;  // Latitud de ejemplo (Cancún, MX)
+    const lon = -86.8469667206303;  // Longitud de ejemplo (Cancún, MX)
+
+    const userLatLng = [lat, lon];
+
+    console.log("Ubicación estática:", lat, lon);
+
+    // Remover marcadores previos
+    map.eachLayer((layer) => {
+      if (layer instanceof L.Marker) map.removeLayer(layer);
     });
+
+    // Agregar marcador en la ubicación estática
+    L.marker(userLatLng, {
+      icon: L.icon({
+        iconUrl: "src/assets/UserIconLocation.png",
+        iconSize: [40, 40],
+        iconAnchor: [20, 40],
+      }),
+    }).addTo(map);
+
+    map.flyTo(userLatLng, 16); // Ajustar zoom a 16 para mayor precisión visual
+
+    setLoading(false);
   };
 
   return (
     <button
       onClick={handleLocate}
-      className="absolute top-5 right-5 bg-red-700 text-white px-4 py-2 rounded-lg shadow-md hover:bg-red-800 z-[1000]"
+      className="text-lg absolute top-5 right-5 bg-red-700 text-white px-4 py-2 rounded-lg shadow-md hover:bg-red-800 z-[1000]"
     >
-      {loading ? "Buscando..." : "Mi ubicación"}
+      {loading ? "Buscando..." : "Buscar albergues más cercanos"}
     </button>
   );
 }
