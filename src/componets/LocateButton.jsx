@@ -1,39 +1,24 @@
 import { useMap } from "react-leaflet";
 import { useState } from "react";
-import L from "leaflet";
-import UserLocation from "./UserLocation";
 
-export default function LocateButton() {
+export default function LocateButton({ onLocation }) {
   const map = useMap();
   const [loading, setLoading] = useState(false);
 
   const handleLocate = () => {
     setLoading(true);
 
-    // Ubicación estática en latitud y longitud
-
-    const lat = 21.049706925680244;  // Latitud de ejemplo (Cancún, MX)
-    const lon = -86.8469667206303;  // Longitud de ejemplo (Cancún, MX)
-
+    const lat = 21.049706925680244;
+    const lon = -86.8469667206303;
     const userLatLng = [lat, lon];
 
     console.log("Ubicación estática:", lat, lon);
 
-    // Remover marcadores previos
-    map.eachLayer((layer) => {
-      if (layer instanceof L.Marker) map.removeLayer(layer);
-    });
+    // Solo mueve el mapa — no borra nada
+    map.flyTo(userLatLng, 16);
 
-    // Agregar marcador en la ubicación estática
-    L.marker(userLatLng, {
-      icon: L.icon({
-        iconUrl: "src/assets/UserIconLocation.png",
-        iconSize: [50, 50],
-        iconAnchor: [50, 50],
-      }),
-    }).addTo(map);
-
-    map.flyTo(userLatLng, 16); // Ajustar zoom a 16 para mayor precisión visual
+    // Envía la ubicación al componente padre
+    onLocation(userLatLng);
 
     setLoading(false);
   };
