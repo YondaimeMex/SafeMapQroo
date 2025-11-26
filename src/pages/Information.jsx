@@ -86,7 +86,7 @@ export default function Information() {
     img: "/src/assets/cat2.jpg",
   },
   {
-    colorName: "Amarillo",
+    colorName: "Ambar",
     danger: "Peligro moderado",
     desc: "Prepara tu refugio, guarda documentos y la mochila de emergencia.",
     barClass: "bg-yellow-500",
@@ -137,10 +137,11 @@ export default function Information() {
           <div className="flex">
               <h1 className="text-4xl font-extrabold">Huracanes en Quintana Roo</h1>
               <Link
-            className="ml-96 bg-pink-700 text-white px-4 py-2 rounded-lg hover:bg-pink-800"
+            className="ml-96 bg-pink-700 text-white px-4 py-2 rounded-lg hover:bg-white hover:text-pink-950"
             to={"/home"}
             >
-            Ir a los albregues cercanos
+            
+            Ir a los albergues cercanos
           </Link>
           </div>
           <p className="text-white/90 mt-2 max-w-2xl">
@@ -158,55 +159,55 @@ export default function Information() {
 
       {/* MAIN*/}
       <main className="max-w-6xl mx-auto px-4 py-8 space-y-10 bg-white text-pink-950 rounded-t-3xl shadow-2xl mt-4">
-        {/* ¿Qué es un huracán? */}
-        <section className="border border-pink-200 rounded-3xl p-6 shadow-sm">
-          <h2 className="text-2xl font-bold mb-2">¿Qué es un huracán?</h2>
-          <p className="text-sm md:text-base mb-3">
-            Un huracán es un sistema de tormentas con vientos muy fuertes y lluvias
-            intensas que se forma sobre el océano. En Quintana Roo pueden presentarse
-            cada año durante la temporada de ciclones tropicales.
-          </p>
-          <p className="text-sm md:text-base">
-            Las autoridades utilizan la <strong>escala Saffir-Simpson</strong> para
-            clasificar los huracanes de categoría 1 a 5 según la velocidad del viento y
-            el daño potencial.
-          </p>
-        </section>
 
         {/* SISTEMA DE ALERTA TEMPRANA */}
         <section className="border border-pink-200 rounded-3xl p-6 shadow-sm">
-          <h2 className="text-2xl font-bold mb-2">
-            Sistema de Alerta Temprana (SIAT-CT)
-          </h2>
-          <p className="text-sm md:text-base mb-4">
-            Protección Civil utiliza colores para indicar el nivel de peligro por
-            ciclones tropicales en Quintana Roo.
-          </p>
+        <h2 className="text-2xl font-bold mb-2">
+        Sistema de Alerta Temprana (SIAT-CT)
+        </h2>
+        <p className="text-sm md:text-base mb-4">
+        Protección Civil utiliza colores para indicar el nivel de peligro por
+        ciclones tropicales en Quintana Roo.
+        </p>
 
-          
-          <div className="grid md:grid-cols-2 gap-4 mb-4">
-            {alertLevels.slice(0, 2).map((level) => (
-              <AlertLevelCard key={level.colorName} level={level} />
-            ))}
-          </div>
+        {/* Contenedor flex para alinear todos los divs horizontalmente */}
 
-          <div className="flex justify-center mb-4">
-            <div className="w-full md:w-2/3">
-              <AlertLevelCard level={alertLevels[2]} />
-            </div>
-          </div>
+    {/* Contenedor grid con 1 fila y 5 columnas */}
+      <div className="grid grid-cols-5 gap-4 mb-4">
+      {alertLevels.slice(0, 5).map((level) => (
+      <div key={level.colorName} className="text-xs w-full">
+        <AlertLevelCard level={level} />
+      </div>
+    ))}
+      </div>
 
-          <div className="grid md:grid-cols-2 gap-4">
-            {alertLevels.slice(3).map((level) => (
-              <AlertLevelCard key={level.colorName} level={level} />
-            ))}
-          </div>
+        {/* Segundo grupo de AlertLevelCard 
+        <div className="w-1/4 sm:w-1/3 md:w-1/4">
+        <AlertLevelCard level={alertLevels[2]} />
+        </div>
+        </div>*/}
+
+        {/* Segundo contenedor flex para los siguientes elementos */}
+        {/*<div className="flex gap-4">
+        {alertLevels.slice(3).map((level) => (
+        <div key={level.colorName} className="w-1/4 sm:w-1/3 md:w-1/4">
+        <AlertLevelCard level={level} />
+        </div>
+        ))}
+        </div>*/}
+        </section>
+         {/* INFOGRAFÍAS OFICIALES */}
+        <section className="border border-pink-200 rounded-3xl p-6 shadow-sm">
+          <h2 className="text-2xl font-bold mb-4">Infografías oficiales</h2>
+          <InfographicsAccordion items={infographics} />
         </section>
 
-        {/* CARRUSEL DE IMÁGENES */}
+
+
+        {/* CARRUSEL DE IMÁGENES 
         <section className="space-y-3">
           <h2 className="text-xl md:text-2xl font-bold">Imágenes de Quintana Roo</h2>
-         
+        
           <ImageCarousel images={carouselImages} />
         </section>
 
@@ -261,11 +262,6 @@ export default function Information() {
 
         </section>
 
-        {/* INFOGRAFÍAS OFICIALES */}
-        <section className="border border-pink-200 rounded-3xl p-6 shadow-sm">
-          <h2 className="text-2xl font-bold mb-4">Infografías oficiales</h2>
-          <InfographicsAccordion items={infographics} />
-        </section>
 
         {/* AVISO */}
         <section className="bg-pink-50 border border-pink-300 rounded-3xl p-5">

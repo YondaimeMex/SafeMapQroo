@@ -28,8 +28,8 @@ export default function LocateButton() {
     L.marker(userLatLng, {
       icon: L.icon({
         iconUrl: "src/assets/UserIconLocation.png",
-        iconSize: [40, 40],
-        iconAnchor: [20, 40],
+        iconSize: [50, 50],
+        iconAnchor: [50, 50],
       }),
     }).addTo(map);
 
