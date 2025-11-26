@@ -11,8 +11,11 @@ const centerPosition = [21.1619, -86.8515];
 
 export default function MapView({ size = "normal" }) {
 
+  const maxBounds = [
+    [18.5, -89.5], // southwest lat, lng
+    [21.9, -85.0], // northeast lat, lng
+  ];
   const { data: shelters, loading, error } = getShelters();
-
   const [selectedShelterId, setSelectedShelterId] = useState(null);
 
   // Condición de clases según el tamaño
@@ -26,7 +29,12 @@ export default function MapView({ size = "normal" }) {
       <MapContainer
         center={centerPosition}
         zoom={12}
-        className="w-full h-full rounded-xl shadow-lg z-0 "
+        minZoom={8}            // no puede alejarse más que este nivel
+        maxZoom={20}           // no puede acercarse más que este nivel
+        maxBounds={maxBounds}  // limita el área donde puede moverse
+        maxBoundsViscosity={0.8} // resistencia al empujar fuera de bounds
+        scrollWheelZoom={true}
+        className="w-full h-full rounded-xl shadow-lg z-0"
       >
         <TileLayer
           url="https://tile.openstreetmap.org/{z}/{x}/{y}{r}.png"
