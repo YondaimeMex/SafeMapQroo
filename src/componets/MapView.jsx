@@ -3,6 +3,8 @@ import "leaflet/dist/leaflet.css";
 import SearchBar from "./SearchBar";
 import LocateButton from "./LocateButton";
 import UserLocation from "./UserLocation";
+import { getShelters } from "../api/Requests/GetShelters";
+import { useEffect, useState } from "react";
 
 const centerPosition = [21.1619, -86.8515];
 const markers = [
@@ -12,7 +14,11 @@ const markers = [
 ];
 
 export default function MapView({ size = "normal" }) {
-  
+
+  const { data: shelters, loading, error } = getShelters();
+
+
+
   // Condición de clases según el tamaño
   const containerClass =
     size === "small"
@@ -34,9 +40,9 @@ export default function MapView({ size = "normal" }) {
         <SearchBar />
         <LocateButton />
 
-        {markers.map((m, i) => (
-          <Marker key={i} position={[m.lat, m.lng]}>
-            <Popup>{m.title}</Popup>
+        {shelters.map((m, i) => (
+          <Marker key={i} position={[m.latitude, m.longitude]}>
+            <Popup>{m.name}</Popup>
           </Marker>
         ))}
 
