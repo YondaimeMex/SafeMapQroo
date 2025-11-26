@@ -3,7 +3,7 @@ import { apiClient } from "../generateapi";
 import { useEffect } from "react";
 
 
-export const getOneShelters = (id) => {
+export const getOneShelters = ({ id }) => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
