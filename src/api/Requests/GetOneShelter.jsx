@@ -1,4 +1,4 @@
-import { use, useState } from "react";
+import { useState } from "react";
 import { apiClient } from "../generateapi";
 import { useEffect } from "react";
 
@@ -12,6 +12,9 @@ export const getOneShelters = ( id ) => {
 
 
         const fetchShelters = async () => {
+            
+            if(id == null) return;
+
             try {
                 const response = await apiClient.get('/shelters/' + id);
                 setData(response.data);
