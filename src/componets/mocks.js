@@ -1,5 +1,5 @@
 export const mockShelters = [
-   { 
+  { 
     id: "1", 
     name: "Eva Sámano De López Mateos", 
     address: "CELUL ENTRE CHICOZAPOTE Y 30 DE NOVIEMBRE", 

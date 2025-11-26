@@ -7,8 +7,12 @@ import SummaryPanel from "./SummaryPanel";
 import RegisterModal from "./RegisterModal";
 import { mockShelters, mockEmployees } from "./mocks";
 import { exportCSV } from "./utils";
+import { getShelters } from "../api/Requests/GetShelters";
 
-export default function ShelterDashboard({ shelters = mockShelters, employees = mockEmployees, apiUrl = "/api/shelters" }) {
+export default function ShelterDashboard({employees = mockEmployees, apiUrl = "/api/shelters" }) {
+  
+  const { data: shelters, loading, error } = getShelters();
+
   const [localShelters, setLocalShelters] = useState(shelters);
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState(localShelters[0] || null);
@@ -70,7 +74,7 @@ export default function ShelterDashboard({ shelters = mockShelters, employees = 
           <ShelterList shelters={filteredShelters} selected={selected} onSelect={setSelected} />
 
           <ShelterDetail
-            shelter={selected}
+            shelte={selected}
             employees={selectedEmployees}
             updateShelter={(s) => setLocalShelters((prev) => prev.map((p) => (p.id === s.id ? s : p)))}
           />

@@ -1,7 +1,13 @@
 // src/components/ShelterDetail.jsx
 import React from "react";
+import { getOneShelters } from "../api/Requests/GetOneShelter";
 
-export default function ShelterDetail({ shelter, employees = [] }) {
+export default function ShelterDetail({ shelte, employees = [] }) {
+  
+  console.log("Shelte ID:", shelte);
+
+  const { data: shelter, loading, error } = getOneShelters(shelte?.id);
+  
   if (!shelter) return <section className="col-span-1 bg-white p-4 rounded-lg shadow-sm text-gray-500">Selecciona un albergue para ver el detalle.</section>;
 
   return (

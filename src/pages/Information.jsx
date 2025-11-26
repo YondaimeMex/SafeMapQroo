@@ -147,7 +147,7 @@ export default function Information() {
                   Buscar albergue cercanos
                 </Link>
               </div>
-           
+          
           
           <p className="text-white/90 mt-2 max-w-2xl">
             Información preventiva, recomendaciones de Protección Civil y medidas
