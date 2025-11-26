@@ -140,7 +140,7 @@ export default function Information() {
                 <h1 className="text-4xl font-extrabold">Huracanes en Quintana Roo</h1>
           
                   <Link
-                  className="mt-3.5 bg-pink-700 text-white px-4 py-2 rounded-lg hover:bg-white hover:text-pink-950"
+                  className="mt-3.5 bg-white text-pink-800 px-6 py-3 rounded-xl font-blod text-lg shadow-md hover:bg-pink-100 hover:scale-105 transition-all"
                   to={"/home"}
                   >
                   
@@ -317,10 +317,10 @@ function AlertLevelCard({ level }) {
     >
      
       <div
-        className={`px-4 py-3 flex items-center justify-between text-white text-base font-semibold ${level.barClass}`}
+        className={`px-4 py-3 flex flex-col items-center text-white text-base font-semibold ${level.barClass}`}
       >
-        <span>{level.colorName}</span>
-        <span>{level.danger}</span>
+        <span className="text-lg font-bold">{level.colorName}</span>
+        <span className="text-sm opacity-90">{level.danger}</span>
       </div>
 
      
