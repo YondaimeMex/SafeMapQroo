@@ -11,7 +11,7 @@ export default function LocateButton() {
     setLoading(true);
 
     // Ubicación estática en latitud y longitud
-    
+
     const lat = 21.049706925680244;  // Latitud de ejemplo (Cancún, MX)
     const lon = -86.8469667206303;  // Longitud de ejemplo (Cancún, MX)
 

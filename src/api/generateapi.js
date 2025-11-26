@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const generalUrl = "http://216.238.94.51:5078/api/"
+const generalUrl = "http://216.238.94.51:5078/api/";
 
 
 export const apiClient = axios.create({

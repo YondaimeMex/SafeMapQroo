@@ -1,7 +1,7 @@
 import './index.css'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter,Routes,Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import App from './App.jsx'
 import Home from './pages/Home.jsx'
 import Information from './pages/Information.jsx'
@@ -11,19 +11,23 @@ import Register from './pages/Register.jsx'
 import Dashboard from './Dashboard.jsx'
 
 
+import Modal from "react-modal";
+
+Modal.setAppElement('#root');
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-    {/*Route Main*/}
+      {/*Route Main*/}
       <Routes>
-        <Route path="/" element={<App/>} >
-          <Route index element={<Home/>}/> 
-          <Route path='/home' element={<Home/>}/> 
-          <Route path='/info' element={<Information/>}/>
-          <Route path='/contact' element={<Contact/>}/>
-          <Route path='/login' element={<Login/>}/>
-          <Route path='/register' element={<Register/>}/>
-          <Route path='/dash' element={<Dashboard/>}/>
+        <Route path="/" element={<App />} >
+          <Route index element={<Home />} />
+          <Route path='/home' element={<Home />} />
+          <Route path='/info' element={<Information />} />
+          <Route path='/contact' element={<Contact />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/dash' element={<Dashboard />} />
         </Route>
       </Routes>
     </BrowserRouter>

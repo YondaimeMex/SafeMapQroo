@@ -5,19 +5,15 @@ import LocateButton from "./LocateButton";
 import UserLocation from "./UserLocation";
 import { getShelters } from "../api/Requests/GetShelters";
 import { useEffect, useState } from "react";
+import { ShelterviewModal } from "./SheltersViewModal";
 
 const centerPosition = [21.1619, -86.8515];
-const markers = [
-  { lat: 21.17429, lng: -86.84656, title: "Playa Tortugas" },
-  { lat: 21.16202, lng: -86.82375, title: "Zona Hotelera Cancún" },
-  { lat: 21.14589, lng: -86.83421, title: "Mercado 28" }
-];
 
 export default function MapView({ size = "normal" }) {
 
   const { data: shelters, loading, error } = getShelters();
 
-
+  const [selectedShelterId, setSelectedShelterId] = useState(null);
 
   // Condición de clases según el tamaño
   const containerClass =
@@ -30,7 +26,7 @@ export default function MapView({ size = "normal" }) {
       <MapContainer
         center={centerPosition}
         zoom={12}
-        className="w-full h-full rounded-xl shadow-lg"
+        className="w-full h-full rounded-xl shadow-lg z-0 "
       >
         <TileLayer
           url="https://tile.openstreetmap.org/{z}/{x}/{y}{r}.png"
@@ -39,14 +35,26 @@ export default function MapView({ size = "normal" }) {
 
         <LocateButton />
 
+
+
         {shelters.map((m, i) => (
           <Marker key={i} position={[m.latitude, m.longitude]}
-            eventHandlers={{ click: () => console.log("click") }}>
+            eventHandlers={{
+              click: () => {
+                setSelectedShelterId(m.id)
+                console.log("Shelter ID seleccionado:", m.id);
+              }
+            }} >
             <Popup>{m.name}</Popup>
           </Marker>
         ))}
 
+        <ShelterviewModal id={selectedShelterId} setId={() => setSelectedShelterId(null)} />
+
+
       </MapContainer>
-    </div>
+
+    </div >
+
   );
 }
