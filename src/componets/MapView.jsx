@@ -27,20 +27,19 @@ export default function MapView({ size = "normal" }) {
         className="w-full h-full rounded-xl shadow-lg"
       >
         <TileLayer
-          url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+          url="https://tile.openstreetmap.org/{z}/{x}/{y}{r}.png"
           attribution='&copy; <a href="https://carto.com/attributions">CARTO</a> &copy; OpenStreetMap contributors'
         />
 
-        <SearchBar />
         <LocateButton />
 
         {markers.map((m, i) => (
-          <Marker key={i} position={[m.lat, m.lng]}>
+          <Marker key={i} position={[m.lat, m.lng]}
+            eventHandlers={{click: () => console.log("click")}}>
             <Popup>{m.title}</Popup>
           </Marker>
         ))}
 
-        <UserLocation />
       </MapContainer>
     </div>
   );

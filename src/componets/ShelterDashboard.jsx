@@ -43,7 +43,7 @@ export default function ShelterDashboard({ shelters = mockShelters, employees = 
         <header className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-4">
             <h1 className="text-2xl font-bold">Albergues</h1>
-            <div className="text-sm text-gray-500">Vista detallada de albergues, personal y Street View</div>
+            
           </div>
 
           <div className="flex items-center gap-3">
