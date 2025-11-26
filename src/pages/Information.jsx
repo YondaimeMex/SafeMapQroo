@@ -133,17 +133,22 @@ export default function Information() {
     <div className="min-h-screen bg-pink-950 text-white font-sans">
       {/* ENCABEZADO */}
       <header className="bg-pink-800 shadow-xl border-b border-white/20">
-        <div className="max-w-6xl mx-auto px-4 py-8">
-          <div className="flex">
-              <h1 className="text-4xl font-extrabold">Huracanes en Quintana Roo</h1>
-              <Link
-            className="ml-96 bg-pink-700 text-white px-4 py-2 rounded-lg hover:bg-white hover:text-pink-950"
-            to={"/home"}
-            >
-            
-            Ir a los albergues cercanos
-          </Link>
-          </div>
+        <div className="max-w-6xl mx-auto flex flex-col gap-4 px-4 py-8">
+          
+          
+              <div className="gap-2 w-full flex lg:flex-row flex-col justify-between items-center">
+                <h1 className="text-4xl font-extrabold">Huracanes en Quintana Roo</h1>
+          
+                  <Link
+                  className="mt-3.5 bg-pink-700 text-white px-4 py-2 rounded-lg hover:bg-white hover:text-pink-950"
+                  to={"/home"}
+                  >
+                  
+                  Buscar albergue cercanos
+                </Link>
+              </div>
+           
+          
           <p className="text-white/90 mt-2 max-w-2xl">
             Información preventiva, recomendaciones de Protección Civil y medidas
             básicas para protegerte a ti y a tu familia en caso de ciclones y huracanes.
@@ -161,7 +166,7 @@ export default function Information() {
       <main className="max-w-6xl mx-auto px-4 py-8 space-y-10 bg-white text-pink-950 rounded-t-3xl shadow-2xl mt-4">
 
         {/* SISTEMA DE ALERTA TEMPRANA */}
-        <section className="border border-pink-200 rounded-3xl p-6 shadow-sm">
+        <section className="border border-pink-200 rounded-3xl p-2 shadow-sm">
         <h2 className="text-2xl font-bold mb-2">
         Sistema de Alerta Temprana (SIAT-CT)
         </h2>
@@ -173,7 +178,8 @@ export default function Information() {
         {/* Contenedor flex para alinear todos los divs horizontalmente */}
 
     {/* Contenedor grid con 1 fila y 5 columnas */}
-      <div className="grid grid-cols-5 gap-4 mb-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
+
       {alertLevels.slice(0, 5).map((level) => (
       <div key={level.colorName} className="text-xs w-full">
         <AlertLevelCard level={level} />

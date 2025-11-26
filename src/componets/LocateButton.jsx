@@ -41,7 +41,7 @@ export default function LocateButton() {
   return (
     <button
       onClick={handleLocate}
-      className="text-lg absolute top-5 right-5 bg-red-700 text-white px-4 py-2 rounded-lg shadow-md hover:bg-red-800 z-[1000]"
+      className="text-lg absolute top-5 right-5 bg-pink-800 text-white px-4 py-2 rounded-lg shadow-md hover:bg-red-800 z-[1000]"
     >
       {loading ? "Buscando..." : "Buscar albergues más cercanos"}
     </button>
