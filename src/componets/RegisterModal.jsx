@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { useCreateShelter } from "../api/Requests/CreateShelter";
+import { useCreateShelter } from "../api/Requests/shelter/CreateShelterHook";
 
 export default function RegisterModal({ onClose, onCreate, apiUrl = "/api/shelters" }) {
   const [newShelter, setNewShelter] = useState({

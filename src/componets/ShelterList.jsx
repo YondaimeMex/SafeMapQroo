@@ -2,11 +2,11 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { occupancyBadge } from "./utils";
-import { getShelters } from "../api/Requests/GetShelters";
+import { getShelters } from "../api/ApiShelter";
 
 export default function ShelterList({ selected, onSelect }) {
 
-  const {data, loading, error} = getShelters();
+  const { data, loading, error } = getShelters();
   if (loading) return <section>Cargando albergues...</section>;
   if (error) return <section>Error al cargar los albergues.</section>;
 
@@ -33,7 +33,7 @@ export default function ShelterList({ selected, onSelect }) {
                   : "hover:bg-gray-50"
                 }`}
             >
-            
+
               <div className="flex items-center justify-between">
                 <div>
                   <div className="font-medium">{s.name}</div>

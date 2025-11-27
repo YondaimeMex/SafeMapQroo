@@ -1,4 +1,3 @@
-<<<<<<<< HEAD:src/Api/Requests/shelter/LoginHook.jsx
 import { useState } from "react";
 import { apiClient } from "../generateapi";
 
@@ -32,38 +31,4 @@ export const LogingHook = () => {
 
     return { data, loading, error, loginFunction };
 };
-========
-import { useState } from "react";
-import { apiClient } from "../../generateapi";
 
-export const LogingHook = () => {
-    const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
-
-    const loginFunction = async (shelterData) => {
-
-        setLoading(true);
-        setError(null);
-
-        try {
-
-            const response = await apiClient.post('authorize/login', LoginData);
-            setData(response.data);
-
-            localStorage.setItem('token', response.data.token);
-
-            return response.data;
-
-        } catch (err) {
-            setError(err);
-            throw err; // opcional, si quieres manejar el error desde el componente
-        } finally {
-            setLoading(false);
-        }
-
-    };
-
-    return { data, loading, error, loginFunction };
-};
->>>>>>>> d42c324599e50cebc445eb07eb805799307673b8:src/Api/Requests/Authorize/LoginHook.jsx
