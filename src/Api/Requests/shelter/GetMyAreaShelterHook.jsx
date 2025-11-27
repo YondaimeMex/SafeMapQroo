@@ -1,8 +1,8 @@
 import { tr } from "framer-motion/client";
-import { apiClient } from "../generateapi";
+import { apiClient } from "../../generateapi";
 import { useEffect, useState } from "react";
 
-export const GetMyShelter = (lat, lon) => {
+export const GetMyShelter = (lefTopfLat, rightTopLon, leftLowerLat, rightLowerLon) => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -12,7 +12,7 @@ export const GetMyShelter = (lat, lon) => {
         const fetchMyShelter = async () => {
 
             try {
-                const response = await apiClient.get(`/shelters/${lat},${lon}`);
+                const response = await apiClient.get(`/shelters/${lefTopfLat},${rightTopLon},${leftLowerLat},${rightLowerLon}`);
                 setData(response.data);
             } catch (err) {
                 setError(err);
@@ -31,7 +31,7 @@ export const GetMyShelter = (lat, lon) => {
 
 
 
-    }, [lat, lon]);
+    }, [lefTopfLat, rightTopLon, leftLowerLat, rightLowerLon]);
 
     return { data, loading, error };
 }

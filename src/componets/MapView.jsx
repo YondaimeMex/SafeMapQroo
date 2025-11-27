@@ -3,7 +3,7 @@ import "leaflet/dist/leaflet.css";
 import SearchBar from "./SearchBar";
 import LocateButton from "./LocateButton";
 import UserLocation from "./UserLocation";
-import { getShelters } from "../api/Requests/GetShelters";
+import { getShelters } from "../api/Requests/shelter/GetSheltersHook";
 import { useEffect, useState } from "react";
 import { ShelterviewModal } from "./SheltersViewModal";
 import L from "leaflet";
@@ -12,7 +12,7 @@ const centerPosition = [21.1619, -86.8515];
 
 export default function MapView({ size = "normal" }) {
 
-const { data: shelters, loading, error } = getShelters();
+  const { data: shelters, loading, error } = getShelters();
   const [selectedShelterId, setSelectedShelterId] = useState(null);
   const [userLocation, setUserLocation] = useState(null);
   // Definición de los límites máximos del mapa

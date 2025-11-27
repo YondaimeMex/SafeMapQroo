@@ -1,17 +1,17 @@
 import { use, useState } from "react";
-import { apiClient } from "../generateapi";
+import { apiClient } from "../../generateapi";
 import { useEffect } from "react";
 
 
-export const getShelters = () => {
+export const getOccupancy = () => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const fetchShelters = async () => {
+        const fetchOccupancy = async () => {
             try {
-                const response = await apiClient.get('/shelters');
+                const response = await apiClient.get('occupancy/');
                 setData(response.data);
             } catch (err) {
                 setError(err);
@@ -20,7 +20,7 @@ export const getShelters = () => {
             }
         };
 
-        fetchShelters();
+        fetchOccupancy();
     }, []);
 
     return { data, loading, error };

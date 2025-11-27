@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { apiClient } from "../generateapi";
+import { apiClient } from "../../generateapi";
 
 export const useDeleteShelter = () => {
     const [loading, setLoading] = useState(false);

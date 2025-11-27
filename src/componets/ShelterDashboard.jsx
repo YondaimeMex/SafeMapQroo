@@ -7,10 +7,10 @@ import SummaryPanel from "./SummaryPanel";
 import RegisterModal from "./RegisterModal";
 import { mockShelters, mockEmployees } from "./mocks";
 import { exportCSV } from "./utils";
-import { getShelters } from "../api/Requests/GetShelters";
+import { getShelters } from "../api/Requests/shelter/GetSheltersHook";
 
-export default function ShelterDashboard({employees = mockEmployees, apiUrl = "/api/shelters" }) {
-  
+export default function ShelterDashboard({ employees = mockEmployees, apiUrl = "/api/shelters" }) {
+
   const { data: shelters, loading, error } = getShelters();
 
   const [localShelters, setLocalShelters] = useState(shelters);
@@ -47,7 +47,7 @@ export default function ShelterDashboard({employees = mockEmployees, apiUrl = "/
         <header className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-4">
             <h1 className="text-2xl font-bold">Albergues</h1>
-            
+
           </div>
 
           <div className="flex items-center gap-3">
