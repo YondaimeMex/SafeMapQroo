@@ -1,6 +1,6 @@
-<<<<<<<< HEAD:src/Api/Requests/shelter/LoginHook.jsx
+
 import { useState } from "react";
-import { apiClient } from "../generateapi";
+import { apiClient } from "/src/api/generateapi";
 
 export const LogingHook = () => {
     const [data, setData] = useState(null);
@@ -32,7 +32,7 @@ export const LogingHook = () => {
 
     return { data, loading, error, loginFunction };
 };
-========
+
 import { useState } from "react";
 import { apiClient } from "../../generateapi";
 
@@ -66,4 +66,3 @@ export const LogingHook = () => {
 
     return { data, loading, error, loginFunction };
 };
->>>>>>>> d42c324599e50cebc445eb07eb805799307673b8:src/Api/Requests/Authorize/LoginHook.jsx
