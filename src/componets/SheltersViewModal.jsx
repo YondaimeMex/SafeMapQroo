@@ -1,5 +1,5 @@
 import { u } from "framer-motion/client";
-import { getOneShelters } from "../api/Requests/GetOneShelter";
+import { getOneShelters } from "../api/Requests/shelter/GetOneShelterHook";
 import Modal from "react-modal";
 
 
@@ -12,7 +12,7 @@ export const ShelterviewModal = ({ id, setId }) => {
     if (!id) return null;
 
     const googleMapsUrl = shelter
-        ? `https://www.google.com/maps/search/?api=1&query=${shelter.latitude},${shelter.longitude}`
+        ? `https://www.google.com/maps/dir/?api=1&destination=${shelter.latitude},${shelter.longitude}`
         : "";
 
     return (
@@ -28,7 +28,7 @@ export const ShelterviewModal = ({ id, setId }) => {
                 <div className="">
                     <h2 className=" bg-pink-900 rounded p-5 text-xl text-white font-bold mb-4">Información del Refugio</h2>
                 </div>
-                
+
 
                 {/* Loading */}
                 {loading && <p className="text-gray-500">Cargando información...</p>}

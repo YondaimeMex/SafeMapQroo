@@ -1,6 +1,6 @@
 import { use, useState } from "react";
-import { apiClient } from "../generateapi";
 import { useEffect } from "react";
+import { apiClient } from "../../generateapi";
 
 
 export const getShelters = () => {

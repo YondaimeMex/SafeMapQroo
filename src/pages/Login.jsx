@@ -1,5 +1,5 @@
 import { FaArrowLeft } from "react-icons/fa";
-import { LogingHook } from "../api/Requests/LoginHook";
+import { LogingHook } from "../api/Requests/Authorize/LoginHook";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {

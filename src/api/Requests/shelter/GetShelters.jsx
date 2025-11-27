@@ -1,19 +1,17 @@
 import { use, useState } from "react";
-import { apiClient } from "../generateapi";
 import { useEffect } from "react";
+import { apiClient } from "../../generateapi";
 
 
-export const getOneShelters = ( id ) => {
+export const getShelters = () => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-
-
         const fetchShelters = async () => {
             try {
-                const response = await apiClient.get('/shelters/' + id);
+                const response = await apiClient.get('/shelters');
                 setData(response.data);
             } catch (err) {
                 setError(err);
@@ -22,15 +20,8 @@ export const getOneShelters = ( id ) => {
             }
         };
 
-        if (!id) {
-            setData(null);
-            setLoading(false);
-            return;
-        } else {
-            fetchShelters();
-        }
-
-    }, [id]);
+        fetchShelters();
+    }, []);
 
     return { data, loading, error };
 };
