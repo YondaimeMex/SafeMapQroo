@@ -1,39 +1,37 @@
-import { useState } from "react";
+import { tr } from "framer-motion/client";
 import { apiClient } from "../generateapi";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-
-export const getOneShelters = ( id ) => {
-    const [data, setData] = useState([]);
+export const GetMyShelter = (lat, lon) => {
+    const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
 
-
-        const fetchShelters = async () => {
-            
-            if(id == null) return;
+        const fetchMyShelter = async () => {
 
             try {
-                const response = await apiClient.get('/shelters/' + id);
+                const response = await apiClient.get(`/shelters/${lat},${lon}`);
                 setData(response.data);
             } catch (err) {
                 setError(err);
             } finally {
                 setLoading(false);
             }
-        };
 
-        if (!id) {
+        }
+        if (!lat || !lon) {
             setData(null);
             setLoading(false);
             return;
         } else {
-            fetchShelters();
+            fetchMyShelter();
         }
 
-    }, [id]);
+
+
+    }, [lat, lon]);
 
     return { data, loading, error };
-};
+}

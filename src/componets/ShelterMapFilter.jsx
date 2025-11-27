@@ -2,12 +2,15 @@ import React, { useState, useMemo } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css"; // Componente para mostrar los detalles del albergue
 import { mockShelters } from "./mocks"; // Suponiendo que 'mockShelters' es el arreglo de albergues
-
+import { getShelters } from "../api/Requests/GetShelters";
+import ShelterDetails from "./ShelterDetail";
+import MapView from "./MapView";
 const centerPosition = [21.1619, -86.8515]; // Coordenadas del centro de la vista inicial
 
-export default function ShelterMapFilter({ shelters = mockShelters }) {
+export default function ShelterMapFilter() {
   const [query, setQuery] = useState(""); // Estado para la búsqueda
   const [selectedShelter, setSelectedShelter] = useState(null); // Albergue seleccionado
+  const { data, loading, error } = getShelters();
 
   // Filtrar albergues
   const filteredShelters = useMemo(() => {
@@ -33,7 +36,7 @@ export default function ShelterMapFilter({ shelters = mockShelters }) {
         />
       </div>
 
-      <MapContainer
+      <MapView
         center={centerPosition}
         zoom={12}
         className="w-full h-full rounded-xl shadow-lg"
@@ -55,7 +58,7 @@ export default function ShelterMapFilter({ shelters = mockShelters }) {
             <Popup>{shelter.name}</Popup>
           </Marker>
         ))}
-      </MapContainer>
+      </MapView>
 
       {selectedShelter && <ShelterDetails shelter={selectedShelter} />}
     </div>

@@ -1,34 +1,47 @@
-// src/components/ShelterDetail.jsx
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { getOneShelters } from "../api/Requests/GetOneShelter";
 
-export default function ShelterDetail({ shelte, employees = [] }) {
-  
-  console.log("Shelte ID:", shelte);
+export default function ShelterDetail({ shelter, employees = [] }) {
 
-  const { data: shelter, loading, error } = getOneShelters(shelte?.id);
+  const shelterId = shelter?.id;
+
+  const {data, loading, error} = getOneShelters(shelterId)
   
-  if (!shelter) return <section className="col-span-1 bg-white p-4 rounded-lg shadow-sm text-gray-500">Selecciona un albergue para ver el detalle.</section>;
+  if (!shelterId) {
+  return <section>Selecciona un albergue...</section>;
+  }
+
+  if (loading) {
+  return <section>Cargando...</section>;
+  }
+
+  if (error) {
+  return <section>Error al obtener los datos...</section>;
+}
+  if (!data) {
+  return <section>No se encontraron datos...</section>;
+}
+const shelterDetails = data;
 
   return (
     <section className="col-span-1 bg-white p-4 rounded-lg shadow-sm">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h2 className="text-xl font-semibold">{shelter.name}</h2>
-          <div className="text-sm text-gray-500">{shelter.address}</div>
+          <h2 className="text-xl font-semibold">{shelterDetails.name}</h2>
+          <div className="text-sm text-gray-500">{shelterDetails.address}</div>
           <div className="mt-2 text-sm">
-            <strong>Tel:</strong> {shelter.phone} • <strong>ID:</strong> {shelter.id}
+            <strong>Tel:</strong> {shelterDetails.phone} • <strong>ID:</strong> {shelterDetails.id}
           </div>
         </div>
 
         <div className="text-right">
           <div className="text-sm">Capacidad</div>
-          <div className="text-2xl font-bold">{shelter.capacity}</div>
-          <div className="text-sm text-gray-500">Ocupado: {shelter.occupied}</div>
+          <div className="text-2xl font-bold">{shelterDetails.capacity}</div>
+          <div className="text-sm text-gray-500">Ocupado: {shelterDetails.occupied}</div>
         </div>
       </div>
 
-      <div className="mt-4 text-sm text-gray-700">{shelter.notes}</div>
+      <div className="mt-4 text-sm text-gray-700">{shelterDetails.notes}</div>
 
       <div className="mt-4 flex gap-2">
         <button className="px-3 py-1 rounded-md border">Editar</button>
@@ -48,18 +61,21 @@ export default function ShelterDetail({ shelte, employees = [] }) {
             </tr>
           </thead>
           <tbody>
-            {employees.length === 0 && (
+            {employees.length === 0 ? (
               <tr>
-                <td colSpan={3} className="py-3 text-gray-500">No hay empleados asignados.</td>
+                <td colSpan={3} className="py-3 text-gray-500">
+                  No hay empleados asignados.
+                </td>
               </tr>
+            ) : (
+              employees.map((e) => (
+                <tr key={e.id} className="border-t">
+                  <td className="py-2">{e.name}</td>
+                  <td className="py-2">{e.role}</td>
+                  <td className="py-2">{e.phone}</td>
+                </tr>
+              ))
             )}
-            {employees.map((e) => (
-              <tr key={e.id} className="border-t">
-                <td className="py-2">{e.name}</td>
-                <td className="py-2">{e.role}</td>
-                <td className="py-2">{e.phone}</td>
-              </tr>
-            ))}
           </tbody>
         </table>
       </div>
