@@ -1,6 +1,5 @@
 
 import React, { useState } from "react";
-import { navbarLinks } from "../data/data"
 import { Link } from "react-router-dom";
 
 export default function Information() {
@@ -40,29 +39,6 @@ export default function Information() {
     "Copias de documentos",
     "Ropa impermeable",
     "Power banks",
-  ];
-
-  const carouselImages = [
-    {
-      src: "https://images.pexels.com/photos/3601426/pexels-photo-3601426.jpeg",
-      alt: "Playa Caribe",
-      label: "Zona costera de Quintana Roo",
-    },
-    {
-      src: "https://images.pexels.com/photos/460671/pexels-photo-460671.jpeg",
-      alt: "Lluvia fuerte",
-      label: "Lluvias intensas en zona urbana",
-    },
-    {
-      src: "https://images.pexels.com/photos/1071875/pexels-photo-1071875.jpeg",
-      alt: "Tormenta",
-      label: "Cielo de tormenta",
-    },
-    {
-      src: "https://images.pexels.com/photos/1331820/pexels-photo-1331820.jpeg",
-      alt: "Ciudad costera",
-      label: "Ciudad costera del Caribe",
-    },
   ];
 
   // Niveles de alerta 
@@ -130,7 +106,7 @@ export default function Information() {
   ];
 
   return (
-    <div className="min-h-screen bg-pink-950 text-white font-sans">
+    <div className="min-h-screen bg-pink-950 text-white font-sans text-lg md:text-xl">
       {/* ENCABEZADO */}
       <header className="bg-pink-800 shadow-xl border-b border-white/20">
         <div className="max-w-6xl mx-auto flex flex-col gap-4 px-4 py-8">
@@ -140,7 +116,7 @@ export default function Information() {
                 <h1 className="text-4xl font-extrabold">Huracanes en Quintana Roo</h1>
           
                   <Link
-                  className="mt-3.5 bg-white text-pink-800 px-6 py-3 rounded-xl font-blod text-lg shadow-md hover:bg-pink-100 hover:scale-105 transition-all"
+                  className="mt-3.5 bg-white text-pink-800 px-6 py-3 rounded-xl font-blod text-lg md:text-xl shadow-md hover:bg-pink-100 hover:scale-105 transition-all"
                   to={"/home"}
                   >
                   
@@ -149,12 +125,12 @@ export default function Information() {
               </div>
           
           
-          <p className="text-white/90 mt-2 max-w-2xl">
+          <p className="text-white/90 mt-2 max-w-2xl text-lg md:text-xl">
             Información preventiva, recomendaciones de Protección Civil y medidas
             básicas para protegerte a ti y a tu familia en caso de ciclones y huracanes.
           </p>
 
-          <div className="mt-3 flex flex-wrap gap-2">
+          <div className="mt-3 flex flex-wrap gap-2 md:text-2xl">
             <Badge text="Temporada: junio - noviembre" />
             <Badge text="Protección Civil Quintana Roo" />
             <Badge text="Caribe Mexicano" />
@@ -163,59 +139,57 @@ export default function Information() {
       </header>
 
       {/* MAIN*/}
-      <main className="max-w-6xl mx-auto px-4 py-8 space-y-10 bg-white text-pink-950 rounded-t-3xl shadow-2xl mt-4">
+      <main className="max-w-6xl mx-auto px-4 py-8 space-y-10 bg-white text-pink-950 rounded-t-3xl shadow-2xl md:text-xl mt-4">
 
         {/* SISTEMA DE ALERTA TEMPRANA */}
-        <section className="border border-pink-200 rounded-3xl p-2 shadow-sm">
-        <h2 className="text-2xl font-bold mb-2">
+        <section className="p-2">
+        <h2 className="text-2xl font-bold mb-2 ">
         Sistema de Alerta Temprana (SIAT-CT)
         </h2>
-        <p className="text-sm md:text-base mb-4">
+        <p className="text-lg md:text-base mb-4">
         Protección Civil utiliza colores para indicar el nivel de peligro por
         ciclones tropicales en Quintana Roo.
         </p>
 
         {/* Contenedor flex para alinear todos los divs horizontalmente */}
 
-    {/* Contenedor grid con 1 fila y 5 columnas */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
+    {/* Contenedor grid con 1 fila y 3 columnas */}
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-4 ">
 
-      {alertLevels.slice(0, 5).map((level) => (
-      <div key={level.colorName} className="text-xs w-full">
-        <AlertLevelCard level={level} />
-      </div>
+      {alertLevels.slice(0, 3).map(( level) => (
+     <>
+        <div key={level.colorName} className="text-xs w-full">
+          <AlertLevelCard level={level} />
+        </div>
+      
+      </>
     ))}
+    
+    
       </div>
 
-        {/* Segundo grupo de AlertLevelCard 
-        <div className="w-1/4 sm:w-1/3 md:w-1/4">
-        <AlertLevelCard level={alertLevels[2]} />
-        </div>
-        </div>*/}
+    {/* Contenedor grid con 1 fila y 2 columnas */}
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4 md:mx-30 mt-4 ">
 
-        {/* Segundo contenedor flex para los siguientes elementos */}
-        {/*<div className="flex gap-4">
-        {alertLevels.slice(3).map((level) => (
-        <div key={level.colorName} className="w-1/4 sm:w-1/3 md:w-1/4">
-        <AlertLevelCard level={level} />
+      {alertLevels.slice(3, 5 ).map(( level) => (
+     <>
+        <div key={level.colorName} className="text-xs w-full">
+          <AlertLevelCard level={level} />
         </div>
-        ))}
-        </div>*/}
+      
+      </>
+    ))}
+    
+    
+      </div>
         </section>
+
          {/* INFOGRAFÍAS OFICIALES */}
-        <section className="border border-pink-200 rounded-3xl p-6 shadow-sm">
+        <section className>
           <h2 className="text-2xl font-bold mb-4">Infografías oficiales</h2>
           <InfographicsAccordion items={infographics} />
         </section>
 
-
-
-        {/* CARRUSEL DE IMÁGENES 
-        <section className="space-y-3">
-          <h2 className="text-xl md:text-2xl font-bold">Imágenes de Quintana Roo</h2>
-        
-          <ImageCarousel images={carouselImages} />
-        </section>
 
         {/* RECOMENDACIONES */}
         <section className="space-y-6">
@@ -300,7 +274,7 @@ function TipsCard({ title, tips }) {
   return (
     <article className="rounded-3xl bg-pink-800 text-white p-4 shadow-md border border-pink-900">
       <h3 className="text-lg font-semibold">{title}</h3>
-      <ul className="mt-2 list-disc list-inside text-xs md:text-sm space-y-1">
+      <ul className="mt-2 list-disc list-inside text-sm md:text-base space-y-1">
         {tips.map((tip) => (
           <li key={tip}>{tip}</li>
         ))}
@@ -313,28 +287,27 @@ function TipsCard({ title, tips }) {
 function AlertLevelCard({ level }) {
   return (
     <div
-      className={`rounded-3xl overflow-hidden shadow-sm border ${level.borderClass} bg-white flex flex-col`}
+      className={`rounded-3xl overflow-hidden shadow-sm border ${level.borderClass} ${level.panelClass} flex flex-col h-[350px]`}
     >
-     
       <div
-        className={`px-4 py-3 flex flex-col items-center text-white text-base font-semibold ${level.barClass}`}
+        className={`px-4 py-3 flex flex-col h-18 md:h-20 items-center text-white text-base font-semibold ${level.barClass}`}
       >
-        <span className="text-lg font-bold">{level.colorName}</span>
-        <span className="text-sm opacity-90">{level.danger}</span>
+        <span className="text-xl font-bold md:text-xl">{level.colorName}</span>
+        <span className="text-lg opacity-90 md:text-lg">{level.danger}</span>
       </div>
 
      
-      <div className={`px-4 py-3 text-pink-950 ${level.panelClass}`}>
-        <p className="font-semibold text-sm mb-2">{level.danger}</p>
-        <p className="text-sm leading-snug">{level.desc}</p>
+      <div className={`px-4 py-3 text-pink-950 ${level.panelClass} `}>
+        <p className="font-semibold text-lg mb-2 md:text-lg">{level.danger}</p>
+        <p className="text-base leading-snug md:h-14 h-18 md:text-base">{level.desc}</p>
       </div>
 
-      <div className={`${level.panelClass} h-28 md:h-32 px-4 pb-4`}>
-        <div className="w-full h-full rounded-2xl overflow-hidden bg-white flex items-center justify-center">
+      <div className={`${level.panelClass} h-32 md:h-30 px-4 pb-4`}>
+        <div className="w-full rounded-2xl h-30 md:h-35 overflow-hidden flex items-center justify-center">
           <img
             src={level.img}
             alt={`Imagen alerta ${level.colorName}`}
-            className="w-full h-full object-contain"
+            className="w-full h-full object-cover mix-blend-multiply"
           />
         </div>
       </div>
@@ -342,57 +315,6 @@ function AlertLevelCard({ level }) {
   );
 }
 
-
-/* CARRUSEL DE IMÁGENES */
-function ImageCarousel({ images }) {
-  const [current, setCurrent] = useState(0);
-
-  const goPrev = () => setCurrent((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-  const goNext = () => setCurrent((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-
-  const currentImage = images[current];
-
-  return (
-    <div className="w-full border border-pink-200 rounded-3xl overflow-hidden shadow-md bg-pink-50">
-      <div className="relative">
-        <img
-          src={currentImage.src}
-          alt={currentImage.alt}
-          className="w-full h-56 md:h-72 object-cover"
-        />
-
-        <button
-          onClick={goPrev}
-          className="absolute left-2 top-1/2 -translate-y-1/2 bg-pink-800/80 text-white rounded-full px-3 py-1"
-        >
-          ◀
-        </button>
-        <button
-          onClick={goNext}
-          className="absolute right-2 top-1/2 -translate-y-1/2 bg-pink-800/80 text-white rounded-full px-3 py-1"
-        >
-          ▶
-        </button>
-
-        <div className="absolute bottom-0 left-0 right-0 bg-pink-950/80 text-white text-xs px-3 py-2">
-          {currentImage.label}
-        </div>
-      </div>
-
-      <div className="flex justify-center gap-2 py-2 bg-white">
-        {images.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrent(index)}
-            className={`w-2.5 h-2.5 rounded-full ${
-              index === current ? "bg-pink-800" : "bg-pink-300"
-            }`}
-          />
-        ))}
-      </div>
-    </div>
-  );
-}
 
 /* ACORDEÓN DE INFOGRAFÍAS DINÁMICAS */
 function InfographicsAccordion({ items }) {
@@ -413,11 +335,11 @@ function InfographicsAccordion({ items }) {
           <button
             type="button"
             onClick={() => toggle(item.id)}
-            className="w-full flex items-center justify-between px-4 py-3 text-left text-sm md:text-base text-pink-950"
+            className="w-full flex items-center justify-between px-4 py-3 text-left text-sm md:text-lg text-pink-950"
           >
             <div>
               <p className="font-semibold">{item.title}</p>
-              <p className="text-xs text-pink-700">{item.desc}</p>
+              <p className="text-xs md:text-base text-pink-700">{item.desc}</p>
             </div>
             <span className="text-pink-700 text-lg">
               {openId === item.id ? "−" : "+"}
