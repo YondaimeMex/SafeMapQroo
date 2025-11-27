@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
 import { getOneShelters } from "../api/Requests/GetOneShelter";
 
@@ -22,6 +23,20 @@ export default function ShelterDetail({ shelter, employees = [] }) {
   return <section>No se encontraron datos...</section>;
 }
 const shelterDetails = data;
+=======
+// src/components/ShelterDetail.jsx
+import React from "react";
+import { getOneShelters } from "../api/Requests/shelter/GetOneShelterHook";
+
+
+export default function ShelterDetail({ shelte, employees = [] }) {
+
+  console.log("Shelte ID:", shelte);
+
+  const { data: shelter, loading, error } = getOneShelters(shelte?.id);
+
+  if (!shelter) return <section className="col-span-1 bg-white p-4 rounded-lg shadow-sm text-gray-500">Selecciona un albergue para ver el detalle.</section>;
+>>>>>>> d42c324599e50cebc445eb07eb805799307673b8
 
   return (
     <section className="col-span-1 bg-white p-4 rounded-lg shadow-sm">
