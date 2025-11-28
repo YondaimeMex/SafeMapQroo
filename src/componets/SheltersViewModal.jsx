@@ -22,7 +22,7 @@ export const ShelterviewModal = ({ id, setId }) => {
                 onRequestClose={() => setId(null)}
                 contentLabel="Información del refugio"
                 className="bg-white p-6 rounded-lg max-w-md mx-auto mt-20 shadow-lg outline-none"
-                overlayClassName="fixed inset-0 bg-black/40 bg-opacity-40"
+                overlayClassName="fixed inset-0 bg-black/40 bg-opacity-40 flex items-center justify-center "
             >
                 {/* Título */}
                 <div className="">
@@ -38,19 +38,19 @@ export const ShelterviewModal = ({ id, setId }) => {
 
                 {/* Datos */}
                 {shelter && (
-                    <div className="text-blue-600 space-y-2">
+                    <div className="text-black">
                         <p><strong className="text-pink-800">Nombre:</strong> {shelter.name}</p>
                         <p><strong className="text-pink-800">Dirección:</strong> {shelter.address}</p>
                         <p><strong className="text-pink-800">Capacidad:</strong> {shelter.capacity}</p>
-                        <p><strong className="text-black">Disponible:</strong> {shelter.available ? "Sí" : "No"}</p>
-                        <p><strong className="text-black">Municipio:</strong> {shelter.municipality}</p>
+                        <p><strong className="text-pink-800">Disponible:</strong> {shelter.available ? "Sí" : "No"}</p>
+                        <p><strong className="text-pink-800">Municipio:</strong> {shelter.municipality}</p>
 
                         {/* Link a Google Maps */}
                         <a
                             href={googleMapsUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="block mt-4 text-pink-700  font-semibold"
+                            className="block mt-4 text-blue-700  font-semibold"
                         >
                             Ver en Google Maps
                         </a>

@@ -14,13 +14,14 @@ export default function MapView({ size = "normal" }) {
 
   const { data: shelters, loading, error } = getShelters();
   const [selectedShelterId, setSelectedShelterId] = useState(null);
+  
   const [userLocation, setUserLocation] = useState(null);
-  // Definición de los límites máximos del mapa
+
   const maxBounds = [
     [14.5, -118.5], // Suroeste
     [32.7, -86.5],  // Noreste
   ];
-  // Condición de clases según el tamaño
+
   const containerClass =
     size === "small"
       ? "relative w-full h-80"
@@ -43,7 +44,7 @@ export default function MapView({ size = "normal" }) {
           attribution='&copy; <a href="https://carto.com/attributions">CARTO</a> &copy; OpenStreetMap contributors'
         />
 
-        <LocateButton onLocation={setUserLocation} />
+        <LocateButton onLocation={setUserLocation} setId={(id) => {setSelectedShelterId(id)}}/>
         {userLocation && (
           <Marker
             position={userLocation}
