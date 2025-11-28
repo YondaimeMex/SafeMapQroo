@@ -2,7 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { occupancyBadge } from "./utils";
-import { getShelters } from "../api/ApiShelter";
+import { getShelters } from "../api/Requests/shelter/GetSheltersHook";
 
 export default function ShelterList({ selected, onSelect }) {
 
