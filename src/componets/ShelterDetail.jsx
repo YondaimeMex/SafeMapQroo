@@ -1,26 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { getOneShelters } from "../api/Requests/shelter/GetOneShelterHook";
 
 export default function ShelterDetail({ shelter, employees = [] }) {
-
   const shelterId = shelter?.id;
 
-  const { data, loading, error } = getOneShelters(shelterId)
+  const { data, loading, error } = getOneShelters(shelterId);
+
+  const BlockMessage = ({ text }) => (
+    <div className="col-span-1 flex items-center justify-center bg-white p-4 rounded-lg shadow-sm">
+      <div className="bg-gray-100 text-gray-700 px-6 py-4 rounded-lg shadow text-center text-sm">
+        {text}
+      </div>
+    </div>
+  );
 
   if (!shelterId) {
-    return <section>Selecciona un albergue...</section>;
+    return <BlockMessage text="Selecciona un albergue para ver los detalles..." />;
   }
 
   if (loading) {
-    return <section>Cargando...</section>;
+    return <BlockMessage text="Cargando información del albergue..." />;
   }
 
   if (error) {
-    return <section>Error al obtener los datos...</section>;
+    return <BlockMessage text="Error al obtener los datos del albergue..." />;
   }
+
   if (!data) {
-    return <section>No se encontraron datos...</section>;
+    return <BlockMessage text="No se encontraron datos del albergue..." />;
   }
+
   const shelterDetails = data;
 
   return (
@@ -30,14 +39,17 @@ export default function ShelterDetail({ shelter, employees = [] }) {
           <h2 className="text-xl font-semibold">{shelterDetails.name}</h2>
           <div className="text-sm text-gray-500">{shelterDetails.address}</div>
           <div className="mt-2 text-sm">
-            <strong>Tel:</strong> {shelterDetails.phone} • <strong>ID:</strong> {shelterDetails.id}
+            <strong>Tel:</strong> {shelterDetails.phone} • <strong>ID:</strong>{" "}
+            {shelterDetails.id}
           </div>
         </div>
 
         <div className="text-right">
           <div className="text-sm">Capacidad</div>
           <div className="text-2xl font-bold">{shelterDetails.capacity}</div>
-          <div className="text-sm text-gray-500">Ocupado: {shelterDetails.occupied}</div>
+          <div className="text-sm text-gray-500">
+            Ocupado: {shelterDetails.occupied}
+          </div>
         </div>
       </div>
 
@@ -50,7 +62,9 @@ export default function ShelterDetail({ shelter, employees = [] }) {
       </div>
 
       <div className="mt-6">
-        <div className="font-semibold mb-2">Empleados asignados ({employees.length})</div>
+        <div className="font-semibold mb-2">
+          Empleados asignados ({employees.length})
+        </div>
 
         <table className="w-full text-sm border-separate border-spacing-0">
           <thead>
@@ -63,7 +77,7 @@ export default function ShelterDetail({ shelter, employees = [] }) {
           <tbody>
             {employees.length === 0 ? (
               <tr>
-                <td colSpan={3} className="py-3 text-gray-500">
+                <td colSpan={3} className="py-3 text-gray-500 text-center">
                   No hay empleados asignados.
                 </td>
               </tr>

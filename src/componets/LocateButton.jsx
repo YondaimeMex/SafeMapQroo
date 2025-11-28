@@ -10,12 +10,10 @@ export default function LocateButton({ onLocation, setId }) {
 
   const { data: shelters, loading: sheltersLoading, error } =  GetMyShelter(coords.lat, coords.lon);
 
-
-  const handleLocate = () => {
+  useEffect(() => {
     
-    setCoords([null, null]); 
-
     setLoading(true);
+
 
     if (!navigator.geolocation) {
       alert("La geolocalización no es soportada por este navegador.");
@@ -40,9 +38,6 @@ export default function LocateButton({ onLocation, setId }) {
 
         setLoading(false);
 
-        setId(shelters.shelter.id)
-
-        map.flyTo([shelters.shelter.latitude, shelters.shelter.longitude], 16);
       },
       (error) => {
         console.error("Error al obtener ubicación:", error);
@@ -54,6 +49,17 @@ export default function LocateButton({ onLocation, setId }) {
         timeout: 10000,
       }
     );
+
+  },[])
+
+  const handleLocate = () => {
+    
+    setCoords([null, null]); 
+
+    setId(shelters.shelter.id)
+
+    map.flyTo([shelters.shelter.latitude, shelters.shelter.longitude], 16);
+
   };
 
   return (
@@ -61,7 +67,7 @@ export default function LocateButton({ onLocation, setId }) {
       onClick={handleLocate}
       className="text-lg absolute top-5 right-5 bg-pink-800 text-white px-4 py-2 rounded-lg shadow-md hover:bg-red-800 z-[1000]"
     >
-      {loading ? "Buscando..." : "Buscar albergue más cercano"}
+      {loading && sheltersLoading ? "Buscando..." : "Buscar albergue más cercano"}
     </button>
   );
 }

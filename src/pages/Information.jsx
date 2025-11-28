@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -120,7 +119,7 @@ export default function Information() {
                   to={"/home"}
                   >
                   
-                  Buscar albergue cercanos
+                  Buscar albergue cercano
                 </Link>
               </div>
           

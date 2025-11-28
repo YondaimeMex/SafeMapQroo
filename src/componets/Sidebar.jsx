@@ -1,6 +1,7 @@
 // src/components/Sidebar.jsx
 import React from "react";
-import { Home, Users, Settings, FileText, LogOut } from "lucide-react";
+import { Home, Users, Settings, FileText, LogOut} from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Sidebar() {
   return (
@@ -42,10 +43,13 @@ export default function Sidebar() {
         </ul>
       </nav>
       <div className="mt-auto pt-4 border-t">
-        <button className="w-full flex items-center gap-2 p-2 rounded-md hover:bg-gray-100">
-          <LogOut size={16} />
-          Cerrar sesión
-        </button>
+        <Link
+  to="/login"
+  className="w-full flex items-center gap-2 p-2 rounded-md hover:bg-gray-100"
+>
+  <LogOut size={16} />
+  Cerrar sesión
+</Link>
       </div>
     </aside>
   );

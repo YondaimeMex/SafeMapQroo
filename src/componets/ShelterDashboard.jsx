@@ -83,7 +83,6 @@ export default function ShelterDashboard({ employees = mockEmployees}) {
               setLocalShelters((prev) => [created, ...prev]);
               setSelected(created);
             }}
-            apiUrl={apiUrl}
           />
         )}
       </main>
