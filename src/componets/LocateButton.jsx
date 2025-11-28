@@ -41,16 +41,16 @@ export default function LocateButton({ onLocation, setId }) {
       },
       (error) => {
         console.error("Error al obtener ubicación:", error);
-        alert("No se pudo obtener la ubicación.");
+        console.log("No se pudo obtener la ubicación.");
         setLoading(false);
       },
       {
         enableHighAccuracy: true,
-        timeout: 10000,
+        timeout: 100000,
       }
     );
 
-  },[])
+  })
 
   const handleLocate = () => {
     
