@@ -18,7 +18,7 @@ const NavBar = () => {
             src="/src/assets/COEPROC-qqb0ndq3et1dbmhtmnkfpkpr29q8y7hl323ch5e59k.png"
             alt="Logo"
           />
-          <p className="text-lg text-white">SafeMapQroo</p>
+          <p className="text-lg text-white">SafeMap</p>
         </div>
 
         {/* Desktop Menu */}
