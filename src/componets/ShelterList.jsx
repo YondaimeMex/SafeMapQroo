@@ -2,23 +2,20 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { occupancyBadge } from "./utils";
-import { getShelters } from "../api/Requests/shelter/GetSheltersHook";
 
-export default function ShelterList({ selected, onSelect }) {
 
-  const { data, loading, error } = getShelters();
-  if (loading) return <section>Cargando albergues...</section>;
-  if (error) return <section>Error al cargar los albergues.</section>;
+export default function ShelterList({ shelters = [],selected, onSelect }) {
 
+  
   return (
     <section className="col-span-1 bg-white p-4 rounded-lg shadow-sm">
       <div className="flex items-center justify-between mb-3">
-        <div className="font-semibold">Albergues ({data.length})</div>
+        <div className="font-semibold">Albergues ({shelters.length})</div>
         <div className="text-xs text-gray-500">Actualizado</div>
       </div>
 
       <div className="space-y-3 max-h-[60vh] overflow-auto pr-2">
-        {data.map((s) => {
+        {shelters.map((s) => {
           const badge = occupancyBadge(s.occupied, s.capacity);
 
           return (

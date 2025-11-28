@@ -1,5 +1,5 @@
 // src/components/ShelterDashboard.jsx
-import React, { useState, useMemo } from "react";
+import React, { useEffect,useState, useMemo } from "react";
 import Sidebar from "./Sidebar";
 import ShelterList from "./ShelterList";
 import ShelterDetail from "./ShelterDetail";
@@ -18,8 +18,30 @@ export default function ShelterDashboard({ employees = mockEmployees, apiUrl = "
   const [selected, setSelected] = useState(localShelters[0] || null);
   const [showOccupancyChart] = useState(true);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
+  
+    useEffect(() => {
+    if (shelters && shelters.length > 0) {
+      setLocalShelters(shelters);
 
- 
+      // si no hay seleccionado, tomamos el primero
+      setSelected((prev) => prev || shelters[0]);
+    }
+  }, [shelters]);
+    
+  const filteredShelters = useMemo(() => {
+    if (!query) return localShelters;
+
+    const q = query.toLowerCase();
+
+    return localShelters.filter(
+      (s) =>
+        (s.name || "").toLowerCase().includes(q) ||
+        (s.address || "").toLowerCase().includes(q) ||
+        (s.id || "").toLowerCase().includes(q)
+    );
+  }, [localShelters, query]);
+
+
 
   const selectedEmployees = useMemo(
     () => employees.filter((e) => e.shelterId === (selected ? selected.id : "")),
@@ -59,7 +81,7 @@ export default function ShelterDashboard({ employees = mockEmployees, apiUrl = "
         </header>
 
         <div className="grid grid-cols-3 gap-6">
-          <ShelterList  selected={selected} onSelect={setSelected} />
+          <ShelterList  selected={selected} onSelect={setSelected} shelters={filteredShelters}/>
 
           <ShelterDetail
             shelter={selected}
