@@ -17,8 +17,8 @@ export default function MapView({ size = "normal" }) {
   const [userLocation, setUserLocation] = useState(null);
   // Definición de los límites máximos del mapa
   const maxBounds = [
-    [18.5, -89.5], // southwest lat, lng
-    [21.9, -85.0], // northeast lat, lng
+    [14.5, -118.5], // Suroeste
+    [32.7, -86.5],  // Noreste
   ];
   // Condición de clases según el tamaño
   const containerClass =
@@ -31,8 +31,8 @@ export default function MapView({ size = "normal" }) {
       <MapContainer
         center={centerPosition}
         zoom={12}
-        minZoom={8}            // no puede alejarse más que este nivel
-        maxZoom={20}           // no puede acercarse más que este nivel
+        minZoom={6}            // no puede alejarse más que este nivel
+        maxZoom={18}           // no puede acercarse más que este nivel
         maxBounds={maxBounds}  // limita el área donde puede moverse
         maxBoundsViscosity={0.8} // resistencia al empujar fuera de bounds
         scrollWheelZoom={true}
