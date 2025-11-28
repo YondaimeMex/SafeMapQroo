@@ -8,7 +8,7 @@ const NavBar = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <nav className="w-full bg-white shadow-md border-b border-pink-800 sticky top-0 z-50">
+    <nav className="w-full bg-[#611232] shadow-md border-b border-pink-800 sticky top-0 z-50">
       <div className="flex justify-between items-center px-4 py-3">
         
         {/* Logo */}
@@ -18,7 +18,7 @@ const NavBar = () => {
             src="/src/assets/COEPROC-qqb0ndq3et1dbmhtmnkfpkpr29q8y7hl323ch5e59k.png"
             alt="Logo"
           />
-          <p className="text-lg font-semibold text-red-800">SafeMapQroo</p>
+          <p className="text-lg text-white">SafeMapQroo</p>
         </div>
 
         {/* Desktop Menu */}
@@ -27,7 +27,7 @@ const NavBar = () => {
             <li key={item.id}>
               <a
                 href={item.link}
-                className="px-2 py-2 text-lg font-semibold text-pink-800 rounded-sm shadow-sm hover:bg-red-800 hover:text-white hover:shadow-md transition-all duration-300"
+                className="px-2 py-2 text-lg rounded-lg text-white hover:underline hover:font-bold hover:text-white hover:shadow-md transition-all duration-300"
               >
                 {item.title}
               </a>
@@ -37,7 +37,7 @@ const NavBar = () => {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-3xl text-red-800"
+          className="md:hidden text-3xl text-white"
           onClick={toggleMenu}
         >
           {isOpen ? <IoClose /> : <IoMenu />}
@@ -46,12 +46,12 @@ const NavBar = () => {
 
       {/* Mobile Dropdown Menu */}
       {isOpen && (
-        <div className="md:hidden bg-white shadow-md">
+        <div className="md:hidden bg-pink-900 shadow-md">
           <ul className="flex flex-col items-start gap-3 px-6 py-4">
             {navbarLinks.map((item) => (
               <li key={item.id} className="w-full">
                 <a
-                  className="block w-full text-left py-2 px-3 rounded-lg hover:bg-red-800 hover:text-white transition"
+                  className="block w-full text-left text-white font-semibold py-2 px-3 rounded-lg hover:bg-pink-800 hover:underline transition"
                   href={item.link}
                   onClick={() => setIsOpen(false)}
                 >
