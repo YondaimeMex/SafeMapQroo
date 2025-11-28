@@ -22,7 +22,7 @@ export const ShelterviewModal = ({ id, setId }) => {
                 onRequestClose={() => setId(null)}
                 contentLabel="Información del refugio"
                 className="bg-white p-6 rounded-lg max-w-md mx-auto mt-20 shadow-lg outline-none"
-                overlayClassName="fixed inset-0 bg-black/40 bg-opacity-40"
+                overlayClassName="fixed inset-0 bg-black/40 bg-opacity-40 flex items-center justify-center "
             >
                 {/* Título */}
                 <div className="">

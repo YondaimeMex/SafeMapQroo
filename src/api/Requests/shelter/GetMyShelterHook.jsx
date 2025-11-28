@@ -1,37 +1,35 @@
-import { tr } from "framer-motion/client";
-import { apiClient } from "../generateapi";
 import { useEffect, useState } from "react";
+import { apiClient } from "../../generateapi";
 
 export const GetMyShelter = (lat, lon) => {
-    const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-    useEffect(() => {
+  useEffect(() => {
+    if (lat == null || lon == null) {
+      return;
+    }
 
-        const fetchMyShelter = async () => {
+    const fetchMyShelter = async () => {
+      setLoading(true);
+      setError(null);
 
-            try {
-                const response = await apiClient.get(`/shelters/${lat},${lon}`);
-                setData(response.data);
-            } catch (err) {
-                setError(err);
-            } finally {
-                setLoading(false);
-            }
+      try {
+        const response = await apiClient.get(`/shelters/${lat},${lon}`);
+        setData(response.data);
+        
+        console.log("hookResponse", response.data);
 
-        }
-        if (!lat || !lon) {
-            setData(null);
-            setLoading(false);
-            return;
-        } else {
-            fetchMyShelter();
-        }
+      } catch (err) {
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+    };
 
+    fetchMyShelter();
+  }, [lat, lon]);
 
-
-    }, [lat, lon]);
-
-    return { data, loading, error };
+  return { data, loading, error };
 };

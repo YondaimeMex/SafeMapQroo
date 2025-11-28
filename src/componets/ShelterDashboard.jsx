@@ -5,11 +5,11 @@ import ShelterList from "./ShelterList";
 import ShelterDetail from "./ShelterDetail";
 import SummaryPanel from "./SummaryPanel";
 import RegisterModal from "./RegisterModal";
-import { mockShelters, mockEmployees } from "./mocks";
+import { mockEmployees } from "./mocks";
 import { exportCSV } from "./utils";
 import { getShelters } from "../api/Requests/shelter/GetSheltersHook";
 
-export default function ShelterDashboard({ employees = mockEmployees, apiUrl = "/api/shelters" }) {
+export default function ShelterDashboard({ employees = mockEmployees}) {
 
   const { data: shelters, loading, error } = getShelters();
 
@@ -24,7 +24,7 @@ export default function ShelterDashboard({ employees = mockEmployees, apiUrl = "
   const selectedEmployees = useMemo(
     () => employees.filter((e) => e.shelterId === (selected ? selected.id : "")),
     [employees, selected]
-  );
+  );  
 
   const chartData = useMemo(
     () => localShelters.map((s) => ({ name: s.name, capacity: s.capacity, occupied: s.occupied })),

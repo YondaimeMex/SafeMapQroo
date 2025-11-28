@@ -14,13 +14,14 @@ export default function MapView({ size = "normal" }) {
 
   const { data: shelters, loading, error } = getShelters();
   const [selectedShelterId, setSelectedShelterId] = useState(null);
+  
   const [userLocation, setUserLocation] = useState(null);
-  // Definición de los límites máximos del mapa
+
   const maxBounds = [
-    [18.5, -89.5], // southwest lat, lng
-    [21.9, -85.0], // northeast lat, lng
+    [18.5, -89.5], 
+    [21.9, -85.0], 
   ];
-  // Condición de clases según el tamaño
+
   const containerClass =
     size === "small"
       ? "relative w-full h-80"
@@ -31,10 +32,10 @@ export default function MapView({ size = "normal" }) {
       <MapContainer
         center={centerPosition}
         zoom={12}
-        minZoom={8}            // no puede alejarse más que este nivel
-        maxZoom={20}           // no puede acercarse más que este nivel
-        maxBounds={maxBounds}  // limita el área donde puede moverse
-        maxBoundsViscosity={0.8} // resistencia al empujar fuera de bounds
+        minZoom={8}            
+        maxZoom={20}           
+        maxBounds={maxBounds}  
+        maxBoundsViscosity={0.8} 
         scrollWheelZoom={true}
         className="w-full h-full rounded-xl shadow-lg z-0"
       >
@@ -43,7 +44,7 @@ export default function MapView({ size = "normal" }) {
           attribution='&copy; <a href="https://carto.com/attributions">CARTO</a> &copy; OpenStreetMap contributors'
         />
 
-        <LocateButton onLocation={setUserLocation} />
+        <LocateButton onLocation={setUserLocation} setId={(id) => {setSelectedShelterId(id)}}/>
         {userLocation && (
           <Marker
             position={userLocation}
