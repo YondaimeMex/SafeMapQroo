@@ -194,9 +194,23 @@ export default function Information() {
         <section className="space-y-6">
           <h2 className="text-2xl font-bold">Recomendaciones</h2>
           <div className="grid md:grid-cols-3 gap-5">
-            <TipsCard title="Antes del huracán" tips={tipsBefore} />
-            <TipsCard title="Durante el huracán" tips={tipsDuring} />
-            <TipsCard title="Después del huracán" tips={tipsAfter} />
+            <TipsCard
+              title="Antes del huracán"
+              tips={tipsBefore}
+              color="bg-[#B03A62]" // tono más claro
+            />
+
+            <TipsCard
+              title="Durante el huracán"
+              tips={tipsDuring}
+              color="bg-[#8A2A4D]" // tono medio
+            />
+
+            <TipsCard
+              title="Después del huracán"
+              tips={tipsAfter}
+              color="bg-[#611232]" // tono más oscuro (color oficial COEPROC)
+            />
           </div>
         </section>
 
@@ -269,9 +283,11 @@ function Badge({ text }) {
   );
 }
 
-function TipsCard({ title, tips }) {
+function TipsCard({ title, tips, color }) {
   return (
-    <article className="rounded-3xl bg-pink-800 text-white p-4 shadow-md border border-pink-900">
+    <article
+      className={`rounded-3xl text-white p-4 shadow-md border border-pink-900 ${color}`}
+    >
       <h3 className="text-lg font-semibold">{title}</h3>
       <ul className="mt-2 list-disc list-inside text-sm md:text-base space-y-1">
         {tips.map((tip) => (
