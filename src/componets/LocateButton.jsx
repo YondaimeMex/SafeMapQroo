@@ -1,34 +1,73 @@
+import { useState, useEffect } from "react";
 import { useMap } from "react-leaflet";
-import { useState } from "react";
+import { GetMyShelter } from "../api/Requests/shelter/GetMyShelterHook";
 
-export default function LocateButton({ onLocation }) {
+export default function LocateButton({ onLocation, setId }) {
   const map = useMap();
   const [loading, setLoading] = useState(false);
 
-  const handleLocate = () => {
+  const [coords, setCoords] = useState([null, null]);
+
+  const { data: shelters, loading: sheltersLoading, error } =  GetMyShelter(coords.lat, coords.lon);
+
+  useEffect(() => {
+    
     setLoading(true);
 
-    const lat = 21.049706925680244;
-    const lon = -86.8469667206303;
-    const userLatLng = [lat, lon];
 
-    console.log("Ubicación estática:", lat, lon);
+    if (!navigator.geolocation) {
+      alert("La geolocalización no es soportada por este navegador.");
+      setLoading(false);
+      return;
+    }
 
-    // Solo mueve el mapa — no borra nada
-    map.flyTo(userLatLng, 16);
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
 
-    // Envía la ubicación al componente padre
-    onLocation(userLatLng);
+        const userLatLng = [lat, lon];
 
-    setLoading(false);
+        console.log("Ubicación real:", lat, lon);
+
+
+        onLocation(userLatLng);
+
+        setCoords({ lat, lon });
+        console.log("coordenadas", coords)
+
+        setLoading(false);
+
+      },
+      (error) => {
+        console.error("Error al obtener ubicación:", error);
+        alert("No se pudo obtener la ubicación.");
+        setLoading(false);
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 10000,
+      }
+    );
+
+  },[])
+
+  const handleLocate = () => {
+    
+    setCoords([null, null]); 
+
+    setId(shelters.shelter.id)
+
+    map.flyTo([shelters.shelter.latitude, shelters.shelter.longitude], 16);
+
   };
 
   return (
     <button
       onClick={handleLocate}
-      className="text-lg absolute top-5 right-5 bg-pink-800 text-white px-4 py-2 rounded-lg shadow-md hover:bg-red-800 z-10"
+      className="text-lg absolute top-5 right-5 bg-pink-800 text-white px-4 py-2 rounded-lg shadow-md hover:bg-red-800 z-[1000]"
     >
-      {loading ? "Buscando..." : "Buscar albergues más cercanos"}
+      {loading && sheltersLoading ? "Buscando..." : "Buscar albergue más cercano"}
     </button>
   );
 }

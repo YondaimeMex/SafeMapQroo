@@ -13,7 +13,8 @@ const Login = () => {
 
         try {
             const result = await loginFunction({ email, password });
-            if (result.success) {
+            console.log(result)
+            if (result.token) {
                 // Redirige al dashboard
                 navigate("/dash");
             } else {
