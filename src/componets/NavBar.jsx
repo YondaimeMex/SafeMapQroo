@@ -14,7 +14,7 @@ const NavBar = () => {
         {/* Logo */}
         <div className="flex items-center gap-2">
           <img 
-            className="w-28 h-auto"
+            className="w-32 h-auto grayscale brightness brightness-[10000]"
             src="/src/assets/COEPROC-qqb0ndq3et1dbmhtmnkfpkpr29q8y7hl323ch5e59k.png"
             alt="Logo"
           />
