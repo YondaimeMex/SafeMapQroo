@@ -2,34 +2,31 @@ import { FaArrowLeft } from "react-icons/fa";
 import { LogingHook } from "../api/Requests/Authorize/LoginHook";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import { useState } from "react";
+import ShelterListModal from "../componets/ShelterListModal";
 
 const Login = () => {
-    const { data, loading, error, loginFunction } = LogingHook();
+    const { loading, error, loginFunction } = LogingHook();
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
-        e.preventDefault(); // Evita que la página se recargue
+        e.preventDefault();
         const email = e.target[0].value;
         const password = e.target[1].value;
 
         try {
             const result = await loginFunction({ email, password });
-            console.log(result)
-            localStorage.setItem('userName', result.userName);
+            localStorage.setItem("userName", result.userName);
             const Token = result.token;
             const decodedToken = jwtDecode(Token);
-            console.log(decodedToken.role);
 
-
-            if (decodedToken.role == 'Admin') {
-                // Redirige al dashboard
+            if (decodedToken.role === "Admin") {
                 navigate("/dash");
-            } else {
+            } else if (decodedToken.role === "Organizer") {
                 navigate("/dashOrganizer");
             }
         } catch (err) {
             console.error(err);
-            console.log("Ocurrió un error al iniciar sesión");
         }
     };
 
@@ -55,6 +52,6 @@ const Login = () => {
             </section>
         </div>
     );
-}
+};
 
 export default Login;

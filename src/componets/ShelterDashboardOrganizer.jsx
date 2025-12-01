@@ -1,67 +1,47 @@
-// src/components/ShelterDashboard.jsx
+
+// src/components/ShelterDashboardOrganizer.jsx
 import React, { useEffect, useState, useMemo } from "react";
-import Sidebar from "./Sidebar";
-import ShelterList from "./ShelterList";
-import ShelterDetail from "./ShelterDetail";
-import SummaryPanel from "./SummaryPanel";
-import RegisterModal from "./RegisterModal";
-import { mockEmployees } from "./mocks";
-import { exportCSV } from "./utils";
-import { getShelters } from "../api/Requests/shelter/GetSheltersHook";
 import ShelterDetailForOrganizer from "./ShelterDetailForOrganizer";
-import { ShelterviewModal } from "./SheltersViewModal";
+import { getShelters } from "../api/Requests/shelter/GetSheltersHook";
+import { ShelterListModal } from "./ShelterListModal";
 
 export default function ShelterDashboardOrganizer() {
-
     const { data: shelters, loading, error } = getShelters();
 
-    const [localShelters, setLocalShelters] = useState(shelters);
-    const [query, setQuery] = useState("");
-    const [selected, setSelected] = useState(localShelters[0] || null);
-    const [showOccupancyChart] = useState(true);
-    const [showRegisterModal, setShowRegisterModal] = useState(false);
+    const [selectedShelter, setSelectedShelter] = useState(null);
+    const [showModal, setShowModal] = useState(true); // Mostrar modal al inicio
 
-    useEffect(() => {
-        if (shelters && shelters.length > 0) {
-            setLocalShelters(shelters);
-
-            // si no hay seleccionado, tomamos el primero
-            setSelected((prev) => prev || shelters[0]);
-        }
-    }, [shelters]);
-
-    const filteredShelters = useMemo(() => {
-        if (!query) return localShelters;
-
-        const q = query.toLowerCase();
-
-        return localShelters.filter(
-            (s) =>
-                (s.name || "").toLowerCase().includes(q) ||
-                (s.address || "").toLowerCase().includes(q) ||
-                (s.id || "").toLowerCase().includes(q)
-        );
-    }, [localShelters, query]);
-
-
-
-
-
+    if (loading) return <p>Cargando albergues...</p>;
+    if (error) return <p>Error al cargar albergues</p>;
 
     return (
-
-
-        <div className="min-h-screen flex bg-gray-50 text-gray-800" >
+        <div className="min-h-screen flex bg-gray-50 text-gray-800">
             <main className="flex-1 p-6">
                 <header>
-                    <h1 className=" font-bold text-2xl m-3 ">Bienvenido: {localStorage.getItem('userName') || ''}</h1>
+                    <h1 className="font-bold text-2xl m-3">
+                        Bienvenido: {localStorage.getItem("userName") || ""}
+                    </h1>
                 </header>
-                <section>
-                </section>
-                <div className="grid grid-cols-3 gap-30">
-                    <ShelterDetailForOrganizer shelter={selected} />
-                </div>
 
+                {/* Mostrar modal solo si no hay refugio seleccionado */}
+                {showModal && !selectedShelter && (
+                    <ShelterListModal
+                        shelters={shelters}
+                        selected={selectedShelter}
+                        onSelect={(s) => {
+                            setSelectedShelter(s);
+                            setShowModal(false);
+                        }}
+                        onClose={() => setShowModal(false)}
+                    />
+                )}
+
+                {/* Mostrar detalle del refugio seleccionado */}
+                {selectedShelter && (
+                    <div className="grid grid-cols-3 gap-30">
+                        <ShelterDetailForOrganizer shelter={selectedShelter} />
+                    </div>
+                )}
             </main>
         </div>
     );

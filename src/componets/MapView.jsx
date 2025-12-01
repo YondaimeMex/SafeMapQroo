@@ -7,6 +7,10 @@ import L from "leaflet";
 import { useLocation } from "react-router-dom";
 import { GetMyShelter } from "../api/Requests/shelter/GetMyShelterHook";
 
+import SearchBar from "./SearchBar";
+import LocateButton from "./LocateButton";
+import UserLocation from "./UserLocation";
+
 const centerPosition = [21.1619, -86.8515];
 
 export default function MapView({ size = "normal" }) {
@@ -15,6 +19,7 @@ export default function MapView({ size = "normal" }) {
   const { data: shelters = [], loading, error } = getShelters();
   const [selectedShelterId, setSelectedShelterId] = useState(null);
   const [userLocation, setUserLocation] = useState(null);
+  const [click, setClick] = useState(false);
 
   const maxBounds = [
     [14.5, -118.5], // Suroeste
@@ -29,8 +34,8 @@ export default function MapView({ size = "normal" }) {
   // 🟣 Si venimos desde Information con coords, las guardamos como userLocation
   useEffect(() => {
     const state = location.state;
-    if (state?.userLat && state?.userLon) {
-      setUserLocation([state.userLat, state.userLon]);
+    if (state?.click) {
+      setClick(!click);
     }
   }, [location.state]);
 
@@ -51,6 +56,9 @@ export default function MapView({ size = "normal" }) {
           attribution='&copy; <a href="https://carto.com/attributions">CARTO</a> &copy; OpenStreetMap contributors'
         />
 
+
+        <LocateButton onLocation={setUserLocation} setId={(id) => { setSelectedShelterId(id) }} />
+
         {/* 📍 Marcador de la ubicación del usuario (si la tenemos) */}
         {userLocation && (
           <Marker
@@ -68,6 +76,7 @@ export default function MapView({ size = "normal" }) {
         {/* 🧭 Localizar albergue más cercano y hacer flyTo */}
         {userLocation && (
           <NearestShelterLocator
+            click={click}
             userLocation={userLocation}
             setSelectedShelterId={setSelectedShelterId}
           />
@@ -105,7 +114,10 @@ export default function MapView({ size = "normal" }) {
  * - Llama a GetMyShelter(lat, lon)
  * - Centra el mapa en el albergue más cercano
  */
-function NearestShelterLocator({ userLocation, setSelectedShelterId }) {
+function NearestShelterLocator({ click, userLocation, setSelectedShelterId }) {
+
+
+
   const map = useMap();
   const [alreadyCentered, setAlreadyCentered] = useState(false);
 
@@ -119,6 +131,9 @@ function NearestShelterLocator({ userLocation, setSelectedShelterId }) {
   } = GetMyShelter(lat, lon);
 
   useEffect(() => {
+
+    if (!click) return;
+
     if (!lat || !lon) return;
     if (loading || error) return;
     if (!nearest || !nearest.shelter) return;

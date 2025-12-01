@@ -44,52 +44,52 @@ export default function Information() {
 
   // Niveles de alerta 
   const alertLevels = [
-  {
-    colorName: "Azul",
-    danger: "Peligro mínimo",
-    desc: "El ciclón está lejos (más de 72 h). Mantente informado.",
-    barClass: "bg-blue-700",
-    panelClass: "bg-blue-50",
-    borderClass: "border-blue-200",
-    img: "/src/assets/cat1.jpeg", // 
-  },
-  {
-    colorName: "Verde",
-    danger: "Peligro bajo",
-    desc: "Comienza la prevención: limpia azoteas, patios y desagües.",
-    barClass: "bg-green-700",
-    panelClass: "bg-green-50",
-    borderClass: "border-green-200",
-    img: "/src/assets/cat2.jpg",
-  },
-  {
-    colorName: "Ambar",
-    danger: "Peligro moderado",
-    desc: "Prepara tu refugio, guarda documentos y la mochila de emergencia.",
-    barClass: "bg-yellow-500",
-    panelClass: "bg-yellow-50",
-    borderClass: "border-yellow-200",
-    img: "/src/assets/cat3.jpg",
-  },
-  {
-    colorName: "Naranja",
-    danger: "Peligro alto",
-    desc: "Posible impacto en menos de 36 h. Atiende indicaciones y posibles evacuaciones.",
-    barClass: "bg-orange-600",
-    panelClass: "bg-orange-50",
-    borderClass: "border-orange-200",
-    img: "/src/assets/cat4.jpg",
-  },
-  {
-    colorName: "Rojo",
-    danger: "Peligro máximo",
-    desc: "Impacto inminente. Permanece en refugio seguro y sigue las órdenes oficiales.",
-    barClass: "bg-red-700",
-    panelClass: "bg-red-50",
-    borderClass: "border-red-200",
-    img: "/src/assets/cat5.jpg",
-  },
-];
+    {
+      colorName: "Azul",
+      danger: "Peligro mínimo",
+      desc: "El ciclón está lejos (más de 72 h). Mantente informado.",
+      barClass: "bg-blue-700",
+      panelClass: "bg-blue-50",
+      borderClass: "border-blue-200",
+      img: "/src/assets/cat1.jpeg", // 
+    },
+    {
+      colorName: "Verde",
+      danger: "Peligro bajo",
+      desc: "Comienza la prevención: limpia azoteas, patios y desagües.",
+      barClass: "bg-green-700",
+      panelClass: "bg-green-50",
+      borderClass: "border-green-200",
+      img: "/src/assets/cat2.jpg",
+    },
+    {
+      colorName: "Ambar",
+      danger: "Peligro moderado",
+      desc: "Prepara tu refugio, guarda documentos y la mochila de emergencia.",
+      barClass: "bg-yellow-500",
+      panelClass: "bg-yellow-50",
+      borderClass: "border-yellow-200",
+      img: "/src/assets/cat3.jpg",
+    },
+    {
+      colorName: "Naranja",
+      danger: "Peligro alto",
+      desc: "Posible impacto en menos de 36 h. Atiende indicaciones y posibles evacuaciones.",
+      barClass: "bg-orange-600",
+      panelClass: "bg-orange-50",
+      borderClass: "border-orange-200",
+      img: "/src/assets/cat4.jpg",
+    },
+    {
+      colorName: "Rojo",
+      danger: "Peligro máximo",
+      desc: "Impacto inminente. Permanece en refugio seguro y sigue las órdenes oficiales.",
+      barClass: "bg-red-700",
+      panelClass: "bg-red-50",
+      borderClass: "border-red-200",
+      img: "/src/assets/cat5.jpg",
+    },
+  ];
 
   const infographics = [
     {
@@ -107,51 +107,32 @@ export default function Information() {
   ];
 
   const handleGoToMap = () => {
-  if (!navigator.geolocation) {
-    alert("La geolocalización no es soportada por este navegador.");
-    return;
-  }
 
-  navigator.geolocation.getCurrentPosition(
-    (pos) => {
-      const lat = pos.coords.latitude;
-      const lon = pos.coords.longitude;
-
-      // 👇 Navegamos a /mapa y mandamos la ubicación del usuario
-      navigate("/Map", {
-        state: { userLat: lat, userLon: lon },
-      });
-    },
-    (error) => {
-      console.error("Error al obtener ubicación:", error);
-      alert("No se pudo obtener tu ubicación.");
-    },
-    {
-      enableHighAccuracy: true,
-      timeout: 100000,
-    }
-  );
-};
+    // 👇 Navegamos a /mapa y mandamos la ubicación del usuario
+    navigate("/Map", {
+      state: { click: true },
+    });
+  };
   return (
     <div className="min-h-screen bg-pink-950 text-white font-sans text-lg md:text-xl">
       {/* ENCABEZADO */}
       <header className="bg-pink-800 shadow-xl border-b border-white/20">
         <div className="max-w-6xl mx-auto flex flex-col gap-4 px-4 py-8">
-          
-          
-              <div className="gap-2 w-full flex lg:flex-row flex-col justify-between items-center">
-                <h1 className="text-4xl font-extrabold">Huracanes en Quintana Roo</h1>
-          
-                
-  <button
-    onClick={handleGoToMap}
-    className="mt-3.5 bg-white text-pink-800 px-6 py-3 rounded-xl font-bold text-lg md:text-xl shadow-md hover:bg-pink-100 hover:scale-105 transition-all"
-  >
-    Buscar albergue cercano
-  </button>
-              </div>
-          
-          
+
+
+          <div className="gap-2 w-full flex lg:flex-row flex-col justify-between items-center">
+            <h1 className="text-4xl font-extrabold">Huracanes en Quintana Roo</h1>
+
+
+            <button
+              onClick={handleGoToMap}
+              className="mt-3.5 bg-white text-pink-800 px-6 py-3 rounded-xl font-bold text-lg md:text-xl shadow-md hover:bg-pink-100 hover:scale-105 transition-all"
+            >
+              Buscar albergue cercano
+            </button>
+          </div>
+
+
           <p className="text-white/90 mt-2 max-w-2xl text-lg md:text-xl">
             Información preventiva, recomendaciones de Protección Civil y medidas
             básicas para protegerte a ti y a tu familia en caso de ciclones y huracanes.
@@ -170,48 +151,48 @@ export default function Information() {
 
         {/* SISTEMA DE ALERTA TEMPRANA */}
         <section className="p-2">
-        <h2 className="text-2xl font-bold mb-2 ">
-        Sistema de Alerta Temprana (SIAT-CT)
-        </h2>
-        <p className="text-lg md:text-base mb-4">
-        Protección Civil utiliza colores para indicar el nivel de peligro por
-        ciclones tropicales en Quintana Roo.
-        </p>
+          <h2 className="text-2xl font-bold mb-2 ">
+            Sistema de Alerta Temprana (SIAT-CT)
+          </h2>
+          <p className="text-lg md:text-base mb-4">
+            Protección Civil utiliza colores para indicar el nivel de peligro por
+            ciclones tropicales en Quintana Roo.
+          </p>
 
-        {/* Contenedor flex para alinear todos los divs horizontalmente */}
+          {/* Contenedor flex para alinear todos los divs horizontalmente */}
 
-    {/* Contenedor grid con 1 fila y 3 columnas */}
-      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-4 ">
+          {/* Contenedor grid con 1 fila y 3 columnas */}
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-4 ">
 
-      {alertLevels.slice(0, 3).map(( level) => (
-     <>
-        <div key={level.colorName} className="text-xs w-full">
-          <AlertLevelCard level={level} />
-        </div>
-      
-      </>
-    ))}
-    
-    
-      </div>
+            {alertLevels.slice(0, 3).map((level) => (
+              <>
+                <div key={level.colorName} className="text-xs w-full">
+                  <AlertLevelCard level={level} />
+                </div>
 
-    {/* Contenedor grid con 1 fila y 2 columnas */}
-      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4 md:mx-30 mt-4 ">
+              </>
+            ))}
 
-      {alertLevels.slice(3, 5 ).map(( level) => (
-     <>
-        <div key={level.colorName} className="text-xs w-full">
-          <AlertLevelCard level={level} />
-        </div>
-      
-      </>
-    ))}
-    
-    
-      </div>
+
+          </div>
+
+          {/* Contenedor grid con 1 fila y 2 columnas */}
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4 md:mx-30 mt-4 ">
+
+            {alertLevels.slice(3, 5).map((level) => (
+              <>
+                <div key={level.colorName} className="text-xs w-full">
+                  <AlertLevelCard level={level} />
+                </div>
+
+              </>
+            ))}
+
+
+          </div>
         </section>
 
-         {/* INFOGRAFÍAS OFICIALES */}
+        {/* INFOGRAFÍAS OFICIALES */}
         <section className>
           <h2 className="text-2xl font-bold mb-4">Infografías oficiales</h2>
           <InfographicsAccordion items={infographics} />
@@ -339,7 +320,7 @@ function AlertLevelCard({ level }) {
         <span className="text-lg opacity-90 md:text-lg">{level.danger}</span>
       </div>
 
-     
+
       <div className={`px-4 py-3 text-pink-950 ${level.panelClass} `}>
         <p className="font-semibold text-lg mb-2 md:text-lg">{level.danger}</p>
         <p className="text-base leading-snug md:h-14 h-18 md:text-base">{level.desc}</p>
