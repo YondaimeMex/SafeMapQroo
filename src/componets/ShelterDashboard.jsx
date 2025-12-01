@@ -1,5 +1,5 @@
 // src/components/ShelterDashboard.jsx
-import React, { useEffect,useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import Sidebar from "./Sidebar";
 import ShelterList from "./ShelterList";
 import ShelterDetail from "./ShelterDetail";
@@ -9,7 +9,7 @@ import { mockEmployees } from "./mocks";
 import { exportCSV } from "./utils";
 import { getShelters } from "../api/Requests/shelter/GetSheltersHook";
 
-export default function ShelterDashboard({ employees = mockEmployees}) {
+export default function ShelterDashboard({ employees = mockEmployees }) {
 
   const { data: shelters, loading, error } = getShelters();
 
@@ -18,8 +18,8 @@ export default function ShelterDashboard({ employees = mockEmployees}) {
   const [selected, setSelected] = useState(localShelters[0] || null);
   const [showOccupancyChart] = useState(true);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
-  
-    useEffect(() => {
+
+  useEffect(() => {
     if (shelters && shelters.length > 0) {
       setLocalShelters(shelters);
 
@@ -27,7 +27,7 @@ export default function ShelterDashboard({ employees = mockEmployees}) {
       setSelected((prev) => prev || shelters[0]);
     }
   }, [shelters]);
-    
+
   const filteredShelters = useMemo(() => {
     if (!query) return localShelters;
 
@@ -46,7 +46,7 @@ export default function ShelterDashboard({ employees = mockEmployees}) {
   const selectedEmployees = useMemo(
     () => employees.filter((e) => e.shelterId === (selected ? selected.id : "")),
     [employees, selected]
-  );  
+  );
 
   const chartData = useMemo(
     () => localShelters.map((s) => ({ name: s.name, capacity: s.capacity, occupied: s.occupied })),
@@ -57,11 +57,12 @@ export default function ShelterDashboard({ employees = mockEmployees}) {
     <div className="min-h-screen flex bg-gray-50 text-gray-800">
       <Sidebar />
       <main className="flex-1 p-6">
+        <h1 className=" font-bold text-2xl">Bienvenido: {localStorage.getItem('userName') || ''}</h1>
         <header className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-4">
-            <h1 className="text-2xl font-bold">Albergues</h1>
-
+            <h2 className="text-2xl font-bold">Albergues</h2>
           </div>
+
 
           <div className="flex items-center gap-3">
             <div className="relative">
@@ -81,7 +82,7 @@ export default function ShelterDashboard({ employees = mockEmployees}) {
         </header>
 
         <div className="grid grid-cols-3 gap-6">
-          <ShelterList  selected={selected} onSelect={setSelected} shelters={filteredShelters}/>
+          <ShelterList selected={selected} onSelect={setSelected} shelters={filteredShelters} />
 
           <ShelterDetail
             shelter={selected}

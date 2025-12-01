@@ -1,6 +1,7 @@
 import { FaArrowLeft } from "react-icons/fa";
 import { LogingHook } from "../api/Requests/Authorize/LoginHook";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 const Login = () => {
     const { data, loading, error, loginFunction } = LogingHook();
@@ -14,11 +15,17 @@ const Login = () => {
         try {
             const result = await loginFunction({ email, password });
             console.log(result)
-            if (result.token) {
+            localStorage.setItem('userName', result.userName);
+            const Token = result.token;
+            const decodedToken = jwtDecode(Token);
+            console.log(decodedToken.role);
+
+
+            if (decodedToken.role == 'Admin') {
                 // Redirige al dashboard
                 navigate("/dash");
             } else {
-                console.log("Correo o contraseña incorrectos");
+                navigate("/dashOrganizer");
             }
         } catch (err) {
             console.error(err);

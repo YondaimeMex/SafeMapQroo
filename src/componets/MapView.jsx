@@ -14,7 +14,7 @@ export default function MapView({ size = "normal" }) {
 
   const { data: shelters, loading, error } = getShelters();
   const [selectedShelterId, setSelectedShelterId] = useState(null);
-  
+
   const [userLocation, setUserLocation] = useState(null);
 
   const maxBounds = [
@@ -40,11 +40,11 @@ export default function MapView({ size = "normal" }) {
         className="w-full h-full rounded-xl shadow-lg z-0"
       >
         <TileLayer
-          url="https://tile.openstreetmap.org/{z}/{x}/{y}{r}.png"
+          url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://carto.com/attributions">CARTO</a> &copy; OpenStreetMap contributors'
         />
 
-        <LocateButton onLocation={setUserLocation} setId={(id) => {setSelectedShelterId(id)}}/>
+        <LocateButton onLocation={setUserLocation} setId={(id) => { setSelectedShelterId(id) }} />
         {userLocation && (
           <Marker
             position={userLocation}

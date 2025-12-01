@@ -12,6 +12,7 @@ import Dashboard from './Dashboard.jsx'
 
 
 import Modal from "react-modal";
+import DashboardOrganizer from './pages/pagesDashboard/DashboardOrganizer.jsx'
 
 Modal.setAppElement('#root');
 
@@ -28,6 +29,7 @@ createRoot(document.getElementById('root')).render(
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/dash' element={<Dashboard />} />
+          <Route path='/dashOrganizer' element={<DashboardOrganizer />} />
         </Route>
       </Routes>
     </BrowserRouter>
