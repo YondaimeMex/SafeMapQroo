@@ -9,17 +9,6 @@ const NavBar = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-<<<<<<< HEAD
-    <nav className="w-full bg-[#611232] shadow-md border-b border-pink-900 sticky top-0 z-50 h-20 flex items-center">
-
-      {/* CONTENEDOR QUE OCUPA TODO EL ANCHO */}
-      <div className="w-full flex justify-between items-center px-4 py-3">
-
-        {/* Logo */}
-        <div className="flex items-center gap-2">
-          <img
-            className="h-26 w-auto"
-=======
     <nav className="w-full bg-[#611232] shadow-md border-b border-pink-900 sticky top-0 z-50 flex flex-col">
 
       {/* Header */}
@@ -28,7 +17,6 @@ const NavBar = () => {
         <div className="flex items-center gap-2">
           <img 
             className="h-16 w-auto" 
->>>>>>> bd01fe92c5c85921be31884e1e287dee0e585432
             src="/src/assets/COEPROC-qqb0ndq3et1dbmhtmnkfpkpr29q8y7hl323ch5e59k.png"
             alt="Logo"
           />
