@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Information() {
+  const navigate = useNavigate();
   const tipsBefore = [
     "Revisa que tu casa tenga puertas y ventanas en buen estado.",
     "Identifica el refugio temporal más cercano o una zona segura en tu casa.",
@@ -104,6 +106,32 @@ export default function Information() {
     },
   ];
 
+  const handleGoToMap = () => {
+  if (!navigator.geolocation) {
+    alert("La geolocalización no es soportada por este navegador.");
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(
+    (pos) => {
+      const lat = pos.coords.latitude;
+      const lon = pos.coords.longitude;
+
+      // 👇 Navegamos a /mapa y mandamos la ubicación del usuario
+      navigate("/Map", {
+        state: { userLat: lat, userLon: lon },
+      });
+    },
+    (error) => {
+      console.error("Error al obtener ubicación:", error);
+      alert("No se pudo obtener tu ubicación.");
+    },
+    {
+      enableHighAccuracy: true,
+      timeout: 100000,
+    }
+  );
+};
   return (
     <div className="min-h-screen bg-pink-950 text-white font-sans text-lg md:text-xl">
       {/* ENCABEZADO */}
@@ -114,13 +142,13 @@ export default function Information() {
               <div className="gap-2 w-full flex lg:flex-row flex-col justify-between items-center">
                 <h1 className="text-4xl font-extrabold">Huracanes en Quintana Roo</h1>
           
-                  <Link
-                  className="mt-3.5 bg-white text-pink-800 px-6 py-3 rounded-xl font-blod text-lg md:text-xl shadow-md hover:bg-pink-100 hover:scale-105 transition-all"
-                  to={"/home"}
-                  >
-                  
-                  Buscar albergue cercano
-                </Link>
+                
+  <button
+    onClick={handleGoToMap}
+    className="mt-3.5 bg-white text-pink-800 px-6 py-3 rounded-xl font-bold text-lg md:text-xl shadow-md hover:bg-pink-100 hover:scale-105 transition-all"
+  >
+    Buscar albergue cercano
+  </button>
               </div>
           
           
