@@ -117,7 +117,7 @@ export default function Information() {
       const lat = pos.coords.latitude;
       const lon = pos.coords.longitude;
 
-      // 👇 Navegamos a /mapa y mandamos la ubicación del usuario
+      //Navegamos a /mapa y mandamos la ubicación del usuario
       navigate("/Map", {
         state: { userLat: lat, userLon: lon },
       });
