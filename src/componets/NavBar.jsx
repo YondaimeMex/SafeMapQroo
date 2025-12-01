@@ -8,15 +8,14 @@ const NavBar = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <nav className="w-full bg-[#611232] shadow-md border-b border-pink-900 sticky top-0 z-50 h-20 flex items-center">
-      
-      {/* CONTENEDOR QUE OCUPA TODO EL ANCHO */}
-      <div className="w-full flex justify-between items-center px-4 py-3">
-        
+    <nav className="w-full bg-[#611232] shadow-md border-b border-pink-900 sticky top-0 z-50 flex flex-col">
+
+      {/* Header */}
+      <div className="w-full h-20 flex justify-between items-center px-4">
         {/* Logo */}
         <div className="flex items-center gap-2">
           <img 
-            className="h-26 w-auto" 
+            className="h-16 w-auto" 
             src="/src/assets/COEPROC-qqb0ndq3et1dbmhtmnkfpkpr29q8y7hl323ch5e59k.png"
             alt="Logo"
           />
@@ -46,10 +45,10 @@ const NavBar = () => {
         </button>
       </div>
 
-      {/* Mobile Dropdown Menu */}
+      {/* Mobile Dropdown */}
       {isOpen && (
-        <div className="md:hidden bg-pink-900 shadow-md">
-          <ul className="flex flex-col items-start gap-3 px-6 py-4">
+        <div className="md:hidden bg-pink-900 shadow-md w-full">
+          <ul className="flex flex-col items-start gap-3 px-6 py-4 w-full">
             {navbarLinks.map((item) => (
               <li key={item.id} className="w-full">
                 <a
@@ -69,3 +68,4 @@ const NavBar = () => {
 };
 
 export default NavBar;
+
