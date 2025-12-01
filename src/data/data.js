@@ -15,9 +15,5 @@ export const navbarLinks =[
         title: "Iniciar Sesión",
         link: "login"
     },
-    {
-        id: 4,
-        title: "Dashboard",
-        link: "dash"
-    }
+    
 ]
