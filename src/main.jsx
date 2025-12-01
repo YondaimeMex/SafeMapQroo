@@ -21,10 +21,9 @@ createRoot(document.getElementById('root')).render(
       {/*Route Main*/}
       <Routes>
         <Route path="/" element={<App />} >
-          <Route index element={<Home />} />
-          <Route path='/home' element={<Home />} />
-          <Route path='/info' element={<Information />} />
-          <Route path='/contact' element={<Contact />} />
+          <Route index element={<Information/>} />
+          <Route path='/home' element={<Information />} />
+          <Route path='/Map' element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/dash' element={<Dashboard />} />
