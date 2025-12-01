@@ -16,11 +16,10 @@ const NavBar = () => {
         {/* Logo */}
         <div className="flex items-center gap-2">
           <img 
-            className="h-16 w-auto" 
-            src="/src/assets/COEPROC-qqb0ndq3et1dbmhtmnkfpkpr29q8y7hl323ch5e59k.png"
+            className="brightness-800 p-2 h-20 w-auto" 
+            src="/src/assets/logofinal-removebg-preview.png"
             alt="Logo"
           />
-          <p className="text-lg text-white">SafeMap</p>
         </div>
 
         {/* Desktop Menu */}
