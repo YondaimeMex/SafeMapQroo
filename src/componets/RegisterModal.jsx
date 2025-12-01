@@ -53,7 +53,7 @@ export default function RegisterModal({ onClose, onCreate }) {
         onSubmit={handleCreateShelter}
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        className="relative z-10 w-full max-w-lg bg-white rounded-lg p-6 shadow-2xl"
+        className="relative z-10 w-full max-w-lg bg-white rounded-lg p-6 shadow-2xl text-lg"
       >
         <h3 className="text-lg font-semibold mb-4">Registrar nuevo albergue</h3>
 

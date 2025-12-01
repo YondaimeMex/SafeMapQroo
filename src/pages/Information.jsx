@@ -108,11 +108,34 @@ export default function Information() {
 
   const handleGoToMap = () => {
 
+<<<<<<< HEAD
     // 👇 Navegamos a /mapa y mandamos la ubicación del usuario
     navigate("/Map", {
       state: { click: true },
     });
   };
+=======
+  navigator.geolocation.getCurrentPosition(
+    (pos) => {
+      const lat = pos.coords.latitude;
+      const lon = pos.coords.longitude;
+
+      //Navegamos a /mapa y mandamos la ubicación del usuario
+      navigate("/Map", {
+        state: { userLat: lat, userLon: lon },
+      });
+    },
+    (error) => {
+      console.error("Error al obtener ubicación:", error);
+      alert("No se pudo obtener tu ubicación.");
+    },
+    {
+      enableHighAccuracy: true,
+      timeout: 100000,
+    }
+  );
+};
+>>>>>>> bd01fe92c5c85921be31884e1e287dee0e585432
   return (
     <div className="min-h-screen bg-pink-950 text-white font-sans text-lg md:text-xl">
       {/* ENCABEZADO */}
