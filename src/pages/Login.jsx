@@ -1,6 +1,7 @@
 import { FaArrowLeft } from "react-icons/fa";
 import { LogingHook } from "../api/Requests/Authorize/LoginHook";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 import { useState } from "react";
 import ShelterListModal from "../componets/ShelterListModal";
@@ -16,8 +17,13 @@ const Login = () => {
 
         try {
             const result = await loginFunction({ email, password });
-            if (result.token) navigate("/dash");
-        } catch (err) {
+            const decode = jwtDecode(result.token);
+            console.log(decode);
+            localStorage.setItem("userName", decode.unique_name);
+            if (decode.role == 'Admin') { navigate("/dash") }
+            else { navigate("/dashOrganizer") }
+        }
+        catch (err) {
             console.error(err);
         }
     };

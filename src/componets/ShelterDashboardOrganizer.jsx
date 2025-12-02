@@ -4,13 +4,12 @@ import React, { useEffect, useState, useMemo } from "react";
 import ShelterDetailForOrganizer from "./ShelterDetailForOrganizer";
 import { getShelters } from "../api/Requests/shelter/GetSheltersHook";
 import { ShelterListModal } from "./ShelterListModal";
+import ShelterOccupancyDetail from "./ShelterOccupancyDetail";
 
 export default function ShelterDashboardOrganizer() {
     const { data: shelters, loading, error } = getShelters();
 
-    const [selectedShelter, setSelectedShelter] = useState(null);
-    const [showModal, setShowModal] = useState(true); // Mostrar modal al inicio
-
+    const firstShelter = shelters && shelters.length > 0 ? shelters[0] : null;
     if (loading) return <p>Cargando albergues...</p>;
     if (error) return <p>Error al cargar albergues</p>;
 
@@ -23,26 +22,14 @@ export default function ShelterDashboardOrganizer() {
                     </h1>
                 </header>
 
-                {/* Mostrar modal solo si no hay refugio seleccionado */}
-                {showModal && !selectedShelter && (
-                    <ShelterListModal
-                        shelters={shelters}
-                        selected={selectedShelter}
-                        onSelect={(s) => {
-                            setSelectedShelter(s);
-                            setShowModal(false);
-                        }}
-                        onClose={() => setShowModal(false)}
-                    />
-                )}
-
-                {/* Mostrar detalle del refugio seleccionado */}
-                {selectedShelter && (
-                    <div className="grid grid-cols-3 gap-30">
-                        <ShelterDetailForOrganizer shelter={selectedShelter} />
+                {firstShelter && (
+                    <div className="flex gap-10">
+                        <ShelterDetailForOrganizer shelter={firstShelter} />
+                        <ShelterOccupancyDetail shelterId={firstShelter.id} />
                     </div>
                 )}
             </main>
         </div>
+
     );
 }

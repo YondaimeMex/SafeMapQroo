@@ -108,10 +108,25 @@ export default function Information() {
 
   const handleGoToMap = () => {
 
-    // 👇 Navegamos a /mapa y mandamos la ubicación del usuario
-    navigate("/Map", {
-      state: { click: true },
-    });
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const lat = pos.coords.latitude;
+        const lon = pos.coords.longitude;
+
+        //Navegamos a /mapa y mandamos la ubicación del usuario
+        navigate("/Map", {
+          state: { userLat: lat, userLon: lon },
+        });
+      },
+      (error) => {
+        console.error("Error al obtener ubicación:", error);
+        alert("No se pudo obtener tu ubicación.");
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 100000,
+      }
+    );
   };
   return (
     <div className="min-h-screen bg-pink-950 text-white font-sans text-lg md:text-xl">
@@ -158,10 +173,6 @@ export default function Information() {
             Protección Civil utiliza colores para indicar el nivel de peligro por
             ciclones tropicales en Quintana Roo.
           </p>
-
-          {/* Contenedor flex para alinear todos los divs horizontalmente */}
-
-          {/* Contenedor grid con 1 fila y 3 columnas */}
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-4 ">
 
             {alertLevels.slice(0, 3).map((level) => (

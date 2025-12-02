@@ -10,23 +10,16 @@ export default function ShelterDetailForOrganizer({ shelter }) {
 
     const [newOccupancy, setNewOccupancy] = useState("");
     const [localShelter, setLocalShelter] = useState(null);
+    const [warning, setWarning] = useState("");
 
     useEffect(() => {
         if (data) setLocalShelter(data);
     }, [data]);
 
-    const BlockMessage = ({ text }) => (
-        <div className="flex items-center justify-center h-[80vh] w-[60vw] mx-auto bg-gradient-to-r from-gray-100 to-gray-200 rounded-xl shadow-lg">
-            <div className="bg-white text-gray-700 px-8 py-6 rounded-lg shadow-md text-center text-base font-medium max-w-md">
-                {text}
-            </div>
-        </div>
-    );
-
-    if (!shelterId) return <BlockMessage text="Selecciona un albergue para ver los detalles..." />;
-    if (loading) return <BlockMessage text="Cargando información del albergue..." />;
-    if (error) return <BlockMessage text="Error al obtener los datos del albergue..." />;
-    if (!localShelter) return <BlockMessage text="No se encontraron datos del albergue..." />;
+    if (!shelterId) return <p>Selecciona un albergue...</p>;
+    if (loading) return <p>Cargando información...</p>;
+    if (error) return <p>Error al obtener datos...</p>;
+    if (!localShelter) return <p>No se encontraron datos...</p>;
 
     const shelterDetails = localShelter;
     const occupancyArray = Array.isArray(shelterDetails?.occupancy)
@@ -38,22 +31,37 @@ export default function ShelterDetailForOrganizer({ shelter }) {
     );
 
     const handleUpdate = async () => {
-        try {
-            const updated = await updateOcc(shelterId, { currentOccupancy: Number(newOccupancy) });
-            setNewOccupancy("");
+        const newValue = Number(newOccupancy);
 
+        // Validación contra capacidad
+        if (TotalOcupancy + newValue > shelterDetails.capacity) {
+            setWarning("⚠️ No puedes exceder la capacidad del albergue");
+            return;
+        }
+
+        try {
+            const updated = await updateOcc(shelterId, { currentOccupancy: newValue });
+            setNewOccupancy("");
+            setWarning("");
+
+            // 👇 Actualizar estado local para recalcular TotalOcupancy
             setLocalShelter((prev) => ({
                 ...prev,
                 occupancy: [...(prev.occupancy || []), updated],
             }));
+
+            // Disparar evento global para refrescar otros componentes
+            if (typeof window !== "undefined") {
+                const event = new Event("occupancyUpdated");
+                window.dispatchEvent(event);
+            }
         } catch (err) {
             console.error("Error al actualizar ocupación:", err);
         }
     };
 
     return (
-        <section className="bg-white p-8 rounded-2xl shadow-xl border border-gray-200 
-                        h-[80vh] w-[60vw] mx-auto overflow-y-auto">
+        <section className="bg-white p-8 rounded-2xl shadow-xl border border-gray-200 h-[500px] w-[60vw] mx-auto overflow-y-auto">
             {/* Encabezado */}
             <div className="flex items-start justify-between gap-6 border-b pb-4">
                 <div>
@@ -65,9 +73,6 @@ export default function ShelterDetailForOrganizer({ shelter }) {
                 </div>
             </div>
 
-            {/* Notas */}
-            <div className="mt-6 text-gray-700 leading-relaxed">{shelterDetails.notes}</div>
-
             {/* Capacidad y ocupación */}
             <section className="mt-6">
                 <div className="text-left bg-gray-50 px-4 py-2 rounded-lg shadow-sm flex-initial">
@@ -78,14 +83,22 @@ export default function ShelterDetailForOrganizer({ shelter }) {
                 </div>
             </section>
 
-            {/* Formulario para actualizar ocupación */}
+            {/* Formulario */}
             <div className="mt-6">
-                <label className="block text-sm font-medium text-gray-700 mb-2">Nueva ocupación</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Cantidad de Personas que llegaron
+                </label>
                 <input
                     type="number"
                     value={newOccupancy}
                     onChange={(e) => setNewOccupancy(e.target.value)}
-                    className="border rounded px-3 py-2 w-40"
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                            e.preventDefault();
+                            handleUpdate();
+                        }
+                    }}
+                    className={`border rounded px-3 py-2 w-40 ${warning ? "border-red-600 blink" : ""}`}
                 />
                 <button
                     onClick={handleUpdate}
@@ -94,6 +107,11 @@ export default function ShelterDetailForOrganizer({ shelter }) {
                 >
                     {updating ? "Actualizando..." : "Actualizar"}
                 </button>
+
+                {/* Mensaje de advertencia con parpadeo */}
+                {warning && (
+                    <p className="text-red-600 font-bold mt-3 blink">{warning}</p>
+                )}
                 {updateError && <p className="text-red-500 mt-2">Error al actualizar ocupación</p>}
             </div>
         </section>

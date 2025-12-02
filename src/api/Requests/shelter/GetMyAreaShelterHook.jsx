@@ -2,7 +2,7 @@ import { tr } from "framer-motion/client";
 import { apiClient } from "../generateapi";
 import { useEffect, useState } from "react";
 
-export const GetMyShelter = (lefTopfLat, rightTopLon, leftLowerLat, rightLowerLon) => {
+export const GetMyAreaShelter = (lefTopfLat, rightTopLon, leftLowerLat, rightLowerLon) => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);

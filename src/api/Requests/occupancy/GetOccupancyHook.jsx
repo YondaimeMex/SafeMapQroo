@@ -1,27 +1,26 @@
-import { use, useState } from "react";
+// src/api/Requests/occupancy/GetOccupancyHook.js
+import { useState, useEffect } from "react";
 import { apiClient } from "../../generateapi";
-import { useEffect } from "react";
-
 
 export const getOccupancy = () => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const fetchOccupancy = async () => {
-            try {
-                const response = await apiClient.get('occupancy/');
-                setData(response.data);
-            } catch (err) {
-                setError(err);
-            } finally {
-                setLoading(false);
-            }
-        };
+    const fetchOccupancy = async () => {
+        try {
+            const response = await apiClient.get("occupancy/");
+            setData(response.data);
+        } catch (err) {
+            setError(err);
+        } finally {
+            setLoading(false);
+        }
+    };
 
+    useEffect(() => {
         fetchOccupancy();
     }, []);
 
-    return { data, loading, error };
+    return { data, loading, error, refetch: fetchOccupancy };
 };
