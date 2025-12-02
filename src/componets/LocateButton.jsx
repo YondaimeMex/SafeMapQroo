@@ -25,19 +25,15 @@ export default function LocateButton({ onLocation, setId }) {
       (position) => {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
-
         const userLatLng = [lat, lon];
 
         console.log("Ubicación real:", lat, lon);
-
-
         onLocation(userLatLng);
 
         setCoords({ lat, lon });
         console.log("coordenadas", coords)
 
         setLoading(false);
-
       },
       (error) => {
         console.error("Error al obtener ubicación:", error);
@@ -58,7 +54,7 @@ export default function LocateButton({ onLocation, setId }) {
 
     setId(shelters.shelter.id)
 
-    map.flyTo([shelters.shelter.latitude, shelters.shelter.longitude], 16);
+    map.flyTo([shelters.shelter.latitude, shelters.shelter.longitude], 14);
 
   };
 
