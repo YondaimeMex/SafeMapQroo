@@ -323,12 +323,12 @@ function AlertLevelCard({ level }) {
 
 
       <div className={`px-4 py-3 text-pink-950 ${level.panelClass} `}>
-        <p className="font-semibold text-xl  md:text-lg">{level.danger}</p>
-        <p className="text-lg leading-snug md:h-14 h-18 md:text-base">{level.desc}</p>
+        <p className="font-semibold text-xl mb- md:text-lg">{level.danger}</p>
+        <p className="text-lg leading-snug md:h-14 h-14 md:text-base">{level.desc}</p>
       </div>
 
-      <div className={`${level.panelClass} h-32 md:h-30 px-4 pb-4`}>
-        <div className="w-full rounded-2xl h-30 md:h-35 overflow-hidden flex items-center justify-center">
+      <div className={`${level.panelClass} h-30 md:h-30 px-4 pb-4`}>
+        <div className="w-full rounded-2xl h-35 md:h-35 overflow-hidden flex items-center justify-center">
           <img
             src={level.img}
             alt={`Imagen alerta ${level.colorName}`}
