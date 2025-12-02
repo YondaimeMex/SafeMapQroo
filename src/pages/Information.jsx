@@ -114,47 +114,48 @@ export default function Information() {
     });
   };
   return (
-    <div className="min-h-screen bg-pink-950 text-white font-sans text-lg md:text-xl">
+    <div className="min-h-screen bg-pink-950 text-white font-sans text-xl md:text-6xl">
       {/* ENCABEZADO */}
       <header className="bg-pink-800 shadow-xl border-b border-white/20">
-        <div className="max-w-6xl mx-auto flex flex-col gap-4 px-4 py-8">
+        <div className="max-w-6xl mx-auto flex flex-col items-center text-center px-4 py-10">
 
+          {/* Título */}
+          <h1 className="text-5xl md:text-6xl font-extrabold text-white">
+            Huracanes en Quintana Roo
+          </h1>
 
-          <div className="gap-2 w-full flex lg:flex-row flex-col justify-between items-center">
-            <h1 className="text-4xl font-extrabold">Huracanes en Quintana Roo</h1>
-
-
-            <button
-              onClick={handleGoToMap}
-              className="mt-3.5 bg-white text-pink-800 px-6 py-3 rounded-xl font-bold text-lg md:text-xl shadow-md hover:bg-pink-100 hover:scale-105 transition-all"
-            >
-              Buscar albergue cercano
-            </button>
-          </div>
-
-
-          <p className="text-white/90 mt-2 max-w-2xl text-lg md:text-xl">
+          {/* Párrafo */}
+          <p className="text-white/90 mt-4 max-w-2xl text-lg md:text-2xl">
             Información preventiva, recomendaciones de Protección Civil y medidas
             básicas para protegerte a ti y a tu familia en caso de ciclones y huracanes.
           </p>
 
-          <div className="mt-3 flex flex-wrap gap-2 md:text-2xl">
+          {/* Badges */}
+          <div className="mt-4 flex flex-wrap justify-center gap-2 md:text-2xl">
             <Badge text="Temporada: junio - noviembre" />
             <Badge text="Protección Civil Quintana Roo" />
             <Badge text="Caribe Mexicano" />
           </div>
+
+          {/* Botón hasta abajo */}
+          <button
+            onClick={handleGoToMap}
+            className="mt-12 bg-white text-pink-800 px-10 py-4 rounded-xl font-bold text-xl md:text-3xl shadow-md hover:bg-pink-100 hover:scale-105 transition-all"
+          >
+            BUSCAR ALBERGUE CERCANO
+          </button>
+
         </div>
       </header>
-
       {/* MAIN*/}
-      <main className="max-w-6xl mx-auto px-4 py-8 space-y-10 bg-white text-pink-950 rounded-t-3xl shadow-2xl md:text-xl mt-4">
+      <main className="max-w-6xl mx-auto px-4 py-8 space-y-10 bg-white text-pink-950 rounded-t-3xl shadow-2xl md:text-2xl mt-4">
 
         {/* SISTEMA DE ALERTA TEMPRANA */}
         <section className="p-2">
-          <h2 className="text-2xl font-bold mb-2 ">
+          <h2 className="text-3xl font-bold mb-2 ">
             Sistema de Alerta Temprana (SIAT-CT)
           </h2>
-          <p className="text-lg md:text-base mb-4">
+          <p className="text-lg md:text-lg mb-4">
             Protección Civil utiliza colores para indicar el nivel de peligro por
             ciclones tropicales en Quintana Roo.
           </p>
@@ -194,14 +195,14 @@ export default function Information() {
 
         {/* INFOGRAFÍAS OFICIALES */}
         <section className>
-          <h2 className="text-2xl font-bold mb-4">Infografías oficiales</h2>
+          <h2 className="text-3xl font-bold mb-4">Infografías oficiales</h2>
           <InfographicsAccordion items={infographics} />
         </section>
 
 
         {/* RECOMENDACIONES */}
         <section className="space-y-6">
-          <h2 className="text-2xl font-bold">Recomendaciones</h2>
+          <h2 className="text-3xl font-bold">Recomendaciones</h2>
           <div className="grid md:grid-cols-3 gap-5">
             <TipsCard
               title="Antes del huracán"
@@ -224,8 +225,8 @@ export default function Information() {
         </section>
 
         <section className="border border-pink-200 rounded-3xl p-6 shadow-sm">
-          <h2 className="text-2xl font-bold mb-2">Kit básico de emergencia</h2>
-          <p className="text-sm md:text-base mb-3">
+          <h2 className="text-3xl font-bold mb-2">Kit básico de emergencia</h2>
+          <p className="text-sm md:text-lg mb-3">
             Prepara una{" "}
             <a
               href="#mochila-emergencia-card"
@@ -235,7 +236,7 @@ export default function Information() {
             </a>{" "}
             con artículos esenciales y colócala en un lugar conocido por todos en casa.
           </p>
-          <ul className="list-disc list-inside text-sm md:text-base space-y-1">
+          <ul className="list-disc list-inside text-sm md:text-lg space-y-1">
             {emergencyKit.map((item) => (
               <li key={item}>{item}</li>
             ))}
@@ -244,11 +245,11 @@ export default function Information() {
 
         {/* INFORMACIÓN OFICIAL */}
         <section className="bg-pink-50 border border-pink-300 rounded-3xl p-6 shadow-sm">
-          <h2 className="text-2xl font-bold mb-2">Información oficial</h2>
-          <p className="text-sm md:text-base mb-3">
+          <h2 className="text-3xl font-bold mb-2">Información oficial</h2>
+          <p className="text-sm md:text-lg mb-3">
             En caso de emergencia, sigue únicamente fuentes oficiales:
           </p>
-          <ul className="text-sm md:text-base space-y-2">
+          <ul className="text-sm md:text-lg space-y-2">
             <li>
               <strong>Emergencias:</strong> 911
             </li>
@@ -267,7 +268,7 @@ export default function Information() {
 
         {/* AVISO */}
         <section className="bg-pink-50 border border-pink-300 rounded-3xl p-5">
-          <p className="text-sm md:text-base">
+          <p className="text-sm md:text-lg">
             <strong>Aviso:</strong> Esta página es informativa. Sigue siempre las
             indicaciones de Protección Civil y autoridades oficiales.
           </p>
@@ -298,7 +299,7 @@ function TipsCard({ title, tips, color }) {
       className={`rounded-3xl text-white p-4 shadow-md border border-pink-900 ${color}`}
     >
       <h3 className="text-lg font-semibold">{title}</h3>
-      <ul className="mt-2 list-disc list-inside text-sm md:text-base space-y-1">
+      <ul className="mt-2 list-disc list-inside text-sm md:text-lg space-y-1">
         {tips.map((tip) => (
           <li key={tip}>{tip}</li>
         ))}
