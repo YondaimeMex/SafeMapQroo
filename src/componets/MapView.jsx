@@ -29,7 +29,7 @@ export default function MapView({ size = "normal" }) {
   const containerClass =
     size === "small"
       ? "relative w-full h-80"
-      : "relative w-full h-[90vh]";
+      : "relative w-full h-[88vh]";
 
   // 🟣 Si venimos desde Information con coords, las guardamos como userLocation
   useEffect(() => {
@@ -59,7 +59,7 @@ export default function MapView({ size = "normal" }) {
 
         <LocateButton onLocation={setUserLocation} setId={(id) => { setSelectedShelterId(id) }} />
 
-        {/* 📍 Marcador de la ubicación del usuario (si la tenemos) */}
+        {/* Marcador de la ubicación del usuario */}
         {userLocation && (
           <Marker
             position={userLocation}

@@ -155,7 +155,7 @@ export default function Information() {
           <h2 className="text-3xl font-bold mb-2 ">
             Sistema de Alerta Temprana (SIAT-CT)
           </h2>
-          <p className="text-lg md:text-lg mb-4">
+          <p className="text-lg md:text-xl mb-4">
             Protección Civil utiliza colores para indicar el nivel de peligro por
             ciclones tropicales en Quintana Roo.
           </p>
@@ -167,7 +167,7 @@ export default function Information() {
 
             {alertLevels.slice(0, 3).map((level) => (
               <>
-                <div key={level.colorName} className="text-xs w-full">
+                <div key={level.colorName} className="w-full">
                   <AlertLevelCard level={level} />
                 </div>
 
@@ -226,7 +226,7 @@ export default function Information() {
 
         <section className="border border-pink-200 rounded-3xl p-6 shadow-sm">
           <h2 className="text-3xl font-bold mb-2">Kit básico de emergencia</h2>
-          <p className="text-sm md:text-lg mb-3">
+          <p className="text-base md:text-lg mb-3">
             Prepara una{" "}
             <a
               href="#mochila-emergencia-card"
@@ -236,7 +236,7 @@ export default function Information() {
             </a>{" "}
             con artículos esenciales y colócala en un lugar conocido por todos en casa.
           </p>
-          <ul className="list-disc list-inside text-sm md:text-lg space-y-1">
+          <ul className="list-disc list-inside text-base md:text-lg space-y-1">
             {emergencyKit.map((item) => (
               <li key={item}>{item}</li>
             ))}
@@ -246,10 +246,10 @@ export default function Information() {
         {/* INFORMACIÓN OFICIAL */}
         <section className="bg-pink-50 border border-pink-300 rounded-3xl p-6 shadow-sm">
           <h2 className="text-3xl font-bold mb-2">Información oficial</h2>
-          <p className="text-sm md:text-lg mb-3">
+          <p className="text-base md:text-lg mb-3">
             En caso de emergencia, sigue únicamente fuentes oficiales:
           </p>
-          <ul className="text-sm md:text-lg space-y-2">
+          <ul className="text-base md:text-lg space-y-2">
             <li>
               <strong>Emergencias:</strong> 911
             </li>
@@ -268,7 +268,7 @@ export default function Information() {
 
         {/* AVISO */}
         <section className="bg-pink-50 border border-pink-300 rounded-3xl p-5">
-          <p className="text-sm md:text-lg">
+          <p className="text-base md:text-lg">
             <strong>Aviso:</strong> Esta página es informativa. Sigue siempre las
             indicaciones de Protección Civil y autoridades oficiales.
           </p>
@@ -287,7 +287,7 @@ export default function Information() {
 
 function Badge({ text }) {
   return (
-    <span className="px-3 py-1 rounded-full bg-pink-950 text-white text-xs border border-white/30">
+    <span className="px-3 py-1 rounded-full bg-pink-950 text-white text-sm border border-white/30">
       {text}
     </span>
   );
@@ -298,8 +298,8 @@ function TipsCard({ title, tips, color }) {
     <article
       className={`rounded-3xl text-white p-4 shadow-md border border-pink-900 ${color}`}
     >
-      <h3 className="text-lg font-semibold">{title}</h3>
-      <ul className="mt-2 list-disc list-inside text-sm md:text-lg space-y-1">
+      <h3 className="text-xl font-semibold">{title}</h3>
+      <ul className="mt-2 list-disc list-inside text-base md:text-lg space-y-1">
         {tips.map((tip) => (
           <li key={tip}>{tip}</li>
         ))}
@@ -317,14 +317,14 @@ function AlertLevelCard({ level }) {
       <div
         className={`px-4 py-3 flex flex-col h-18 md:h-20 items-center text-white text-base font-semibold ${level.barClass}`}
       >
-        <span className="text-xl font-bold md:text-xl">{level.colorName}</span>
+        <span className="text-2xl font-bold md:text-2xl">{level.colorName}</span>
         <span className="text-lg opacity-90 md:text-lg">{level.danger}</span>
       </div>
 
 
       <div className={`px-4 py-3 text-pink-950 ${level.panelClass} `}>
-        <p className="font-semibold text-lg mb-2 md:text-lg">{level.danger}</p>
-        <p className="text-base leading-snug md:h-14 h-18 md:text-base">{level.desc}</p>
+        <p className="font-semibold text-xl  md:text-lg">{level.danger}</p>
+        <p className="text-lg leading-snug md:h-14 h-18 md:text-base">{level.desc}</p>
       </div>
 
       <div className={`${level.panelClass} h-32 md:h-30 px-4 pb-4`}>
@@ -360,11 +360,11 @@ function InfographicsAccordion({ items }) {
           <button
             type="button"
             onClick={() => toggle(item.id)}
-            className="w-full flex items-center justify-between px-4 py-3 text-left text-sm md:text-lg text-pink-950"
+            className="w-full flex items-center justify-between px-4 py-3 text-left text-lg md:text-lg text-pink-950"
           >
             <div>
               <p className="font-semibold">{item.title}</p>
-              <p className="text-xs md:text-base text-pink-700">{item.desc}</p>
+              <p className="text-base md:text-base text-pink-700">{item.desc}</p>
             </div>
             <span className="text-pink-700 text-lg">
               {openId === item.id ? "−" : "+"}
