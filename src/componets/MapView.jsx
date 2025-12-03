@@ -147,11 +147,13 @@ export default function MapView({ size = "normal" }) {
               iconUrl: "src/assets/UserIconLocation.png",
               iconSize: [50, 50],
               iconAnchor: [25, 50],
+              className: "filter hue-rotate-60 saturate-500", // Aumenta saturación y brillo
             })}
           >
             <Popup>Estás aquí</Popup>
           </Marker>
         )}
+
 
         {/* 🧭 Localizar albergue más cercano y hacer flyTo */}
         {userLocation && (
