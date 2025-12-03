@@ -35,7 +35,7 @@ export default function ShelterDetailForOrganizer({ shelter }) {
 
         // Validación contra capacidad
         if (TotalOcupancy + newValue > shelterDetails.capacity) {
-            setWarning("⚠️ No puedes exceder la capacidad del albergue");
+            setWarning("No puedes exceder la capacidad del albergue");
             return;
         }
 

@@ -13,14 +13,14 @@ export default function SelectShelter() {
             <div className="flex items-center gap-3 mb-6">
                 <div className="h-10 w-10 rounded-full bg-gradient-to-tr from-blue-500 to-teal-400 flex items-center justify-center text-white font-bold">AL</div>
                 <div>
-                    <div className="text-lg font-semibold">Panel Albergues</div>
-                    <div className="text-sm text-gray-500">Administra tus albergues</div>
+                    <div className="text-lg font-semibold">Panel refugios</div>
+                    <div className="text-sm text-gray-500">Administra tus refugios</div>
                 </div>
             </div>
 
             <section className="col-span-1 bg-white p-4 rounded-lg shadow-sm">
                 <div className="flex items-center justify-between mb-3">
-                    <div className="font-semibold">Albergues ({shelters.length})</div>
+                    <div className="font-semibold">refugio ({shelters.length})</div>
                 </div>
 
                 <div className="space-y-3 max-h-[60vh] overflow-auto pr-2">

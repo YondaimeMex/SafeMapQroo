@@ -39,10 +39,90 @@ export default function MapView({ size = "normal" }) {
     }
   }, [location.state]);
 
+
+  if (!userLocation) {
+    return (
+      <div className="w-full h-[88vh] flex flex-col items-center justify-center bg-gray-100 rounded-xl shadow-lg">
+        <div className="loader mb-4"></div>
+        <p className="text-gray-700 font-medium text-lg">
+          Obteniendo tu ubicación...
+        </p>
+        <div className="hidden">
+          <div className={containerClass}>
+            <MapContainer
+              center={userLocation || centerPosition}
+              zoom={12}
+              minZoom={6}
+              maxZoom={18}
+              maxBounds={maxBounds}
+              maxBoundsViscosity={0.8}
+              scrollWheelZoom={true}
+              className="w-full h-full rounded-xl shadow-lg z-0"
+            >
+              <TileLayer
+                url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution='&copy; <a href="https://carto.com/attributions">CARTO</a> &copy; OpenStreetMap contributors'
+              />
+
+
+              <LocateButton onLocation={setUserLocation} setId={(id) => { setSelectedShelterId(id) }} />
+
+              {/* Marcador de la ubicación del usuario */}
+              {userLocation && (
+                <Marker
+                  position={userLocation}
+                  icon={L.icon({
+                    iconUrl: "src/assets/UserIconLocation.png",
+                    iconSize: [50, 50],
+                    iconAnchor: [25, 50],
+                  })}
+                >
+                  <Popup>Estás aquí</Popup>
+                </Marker>
+              )}
+
+              {/* 🧭 Localizar albergue más cercano y hacer flyTo */}
+              {userLocation && (
+                <NearestShelterLocator
+                  click={click}
+                  userLocation={userLocation}
+                  setSelectedShelterId={setSelectedShelterId}
+                />
+              )}
+
+              {/* Marcadores de todos los albergues */}
+              {(shelters || []).map((m, i) => (
+                <Marker
+                  key={i}
+                  position={[m.latitude, m.longitude]}
+                  eventHandlers={{
+                    click: () => {
+                      setSelectedShelterId(m.id);
+                      console.log("Shelter ID seleccionado:", m.id);
+                    },
+                  }}
+                >
+                  <Popup>{m.name}</Popup>
+                </Marker>
+              ))}
+
+              {/* Modal de detalle del albergue */}
+              <ShelterviewModal
+                id={selectedShelterId}
+                setId={() => setSelectedShelterId(null)}
+              />
+            </MapContainer>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+
   return (
     <div className={containerClass}>
       <MapContainer
-        center={centerPosition}
+        center={userLocation || centerPosition}
         zoom={12}
         minZoom={6}
         maxZoom={18}

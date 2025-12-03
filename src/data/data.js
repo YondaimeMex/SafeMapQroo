@@ -1,5 +1,5 @@
-export const navbarLinks =[
-    {   
+export const navbarLinks = [
+    {
 
         id: 1,
         title: "Inicio",
@@ -7,7 +7,7 @@ export const navbarLinks =[
     },
     {
         id: 2,
-        title: "Mapa de albergues",
+        title: "Mapa de refugios",
         link: "Map"
     },
     {
@@ -15,5 +15,5 @@ export const navbarLinks =[
         title: "Iniciar Sesión",
         link: "login"
     },
-    
+
 ]

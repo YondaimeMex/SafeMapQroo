@@ -60,7 +60,7 @@ export default function ShelterDashboard({ employees = mockEmployees }) {
         <h1 className=" font-bold text-2xl">Bienvenido: {localStorage.getItem('userName') || ''}</h1>
         <header className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-4">
-            <h2 className="text-2xl font-bold">Albergues</h2>
+            <h2 className="text-2xl font-bold">refugios</h2>
           </div>
 
 
@@ -69,14 +69,14 @@ export default function ShelterDashboard({ employees = mockEmployees }) {
               <input
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Buscar albergue, dirección o ID"
+                placeholder="Buscar refugio, dirección o ID"
                 className="pl-3 pr-3 py-2 rounded-md border w-72"
               />
             </div>
 
 
             <button onClick={() => setShowRegisterModal(true)} className="px-3 py-2 rounded-md bg-green-600 text-white hover:bg-green-700">
-              Registrar albergue
+              Registrar refugio
             </button>
           </div>
         </header>

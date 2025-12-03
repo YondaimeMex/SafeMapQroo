@@ -14,19 +14,19 @@ export default function ShelterDetail({ shelter }) {
   );
 
   if (!shelterId) {
-    return <BlockMessage text="Selecciona un albergue para ver los detalles..." />;
+    return <BlockMessage text="Selecciona un refugio para ver los detalles..." />;
   }
 
   if (loading) {
-    return <BlockMessage text="Cargando información del albergue..." />;
+    return <BlockMessage text="Cargando información del refugio..." />;
   }
 
   if (error) {
-    return <BlockMessage text="Error al obtener los datos del albergue..." />;
+    return <BlockMessage text="Error al obtener los datos del refugio..." />;
   }
 
   if (!data) {
-    return <BlockMessage text="No se encontraron datos del albergue..." />;
+    return <BlockMessage text="No se encontraron datos del refugio..." />;
   }
 
   const shelterDetails = data;

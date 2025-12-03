@@ -8,10 +8,10 @@ export default function LocateButton({ onLocation, setId }) {
 
   const [coords, setCoords] = useState([null, null]);
 
-  const { data: shelters, loading: sheltersLoading, error } =  GetMyShelter(coords.lat, coords.lon);
+  const { data: shelters, loading: sheltersLoading, error } = GetMyShelter(coords.lat, coords.lon);
 
   useEffect(() => {
-    
+
     setLoading(true);
 
 
@@ -49,8 +49,8 @@ export default function LocateButton({ onLocation, setId }) {
   })
 
   const handleLocate = () => {
-    
-    setCoords([null, null]); 
+
+    setCoords([null, null]);
 
     setId(shelters.shelter.id)
 
@@ -63,7 +63,7 @@ export default function LocateButton({ onLocation, setId }) {
       onClick={handleLocate}
       className="text-lg absolute top-5 right-5 bg-pink-800 text-white px-4 py-2 rounded-lg shadow-md hover:bg-red-800 z-[1000]"
     >
-      {loading && sheltersLoading ? "Buscando..." : "Buscar albergue más cercano"}
+      {sheltersLoading ? "Buscando..." : "Buscar refugio más cercano"}
     </button>
   );
 }

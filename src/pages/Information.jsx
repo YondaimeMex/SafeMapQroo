@@ -157,7 +157,7 @@ export default function Information() {
             onClick={handleGoToMap}
             className="mt-12 bg-white text-pink-800 px-10 py-4 rounded-xl font-bold text-xl md:text-3xl shadow-md hover:bg-pink-100 hover:scale-105 transition-all"
           >
-            BUSCAR ALBERGUE CERCANO
+            BUSCAR REFUGIO CERCANO
           </button>
 
         </div>

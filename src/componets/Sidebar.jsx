@@ -9,8 +9,8 @@ export default function Sidebar() {
       <div className="flex items-center gap-3 mb-6">
         <div className="h-10 w-10 rounded-full bg-gradient-to-tr from-blue-500 to-teal-400 flex items-center justify-center text-white font-bold">AL</div>
         <div>
-          <div className="text-lg font-semibold">Panel Albergues</div>
-          <div className="text-sm text-gray-500">Administra tus albergues</div>
+          <div className="text-lg font-semibold">Panel refugio</div>
+          <div className="text-sm text-gray-500">Administra tus refugio</div>
         </div>
       </div>
 
@@ -25,7 +25,7 @@ export default function Sidebar() {
           <li>
             <a className="flex items-center gap-3 p-2 rounded-md hover:bg-gray-100 cursor-pointer">
               <Users size={18} />
-              <span>Albergues</span>
+              <span>refugio</span>
             </a>
           </li>
           {/*<li>

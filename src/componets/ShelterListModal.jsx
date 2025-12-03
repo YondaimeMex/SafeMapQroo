@@ -6,7 +6,7 @@ export function ShelterListModal({ shelters, selected, onSelect, onClose }) {
     return (
         <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center">
             <div className="bg-white rounded-lg shadow-lg p-6 w-[600px] max-h-[80vh] overflow-auto">
-                <h2 className="text-lg font-semibold mb-4">Selecciona un albergue</h2>
+                <h2 className="text-lg font-semibold mb-4">Selecciona un refugio</h2>
 
                 <ShelterList shelters={shelters} selected={selected} onSelect={onSelect} />
 
