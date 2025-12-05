@@ -5,7 +5,21 @@ import Modal from "react-modal";
 
 export const ShelterviewModal = ({ id, setId }) => {
     const { data: shelter, loading, error } = getOneShelters(id);
+    const municipality = {
+        0: "Cozumel",
+        1: "Felipe Carrillo Puerto",
+        2: "Isla Mujeres",
+        3: "Othon P. Blanco",
+        4: 'Benito Juarez',
+        5: 'Jose Maria Morelos',
+        6: 'Lazaro Cardenas',
+        7: 'Playa Del Carmen',
+        8: 'Tulum',
+        9: 'Bacalar',
+        10: 'Puerto Morelos'
 
+    }
+    const SelectMunipality = municipality[shelter?.municipality];
     console.log("Shelter data in modal:", error);
 
     // Si no hay id, no mostramos nada
@@ -43,7 +57,7 @@ export const ShelterviewModal = ({ id, setId }) => {
                         <p><strong className="text-pink-800">Dirección:</strong> {shelter.address}</p>
                         <p><strong className="text-pink-800">Capacidad:</strong> {shelter.capacity}</p>
                         <p><strong className="text-pink-800">Disponible:</strong> {shelter.available ? "Sí" : "No"}</p>
-                        <p><strong className="text-pink-800">Municipio:</strong> {shelter.municipality}</p>
+                        <p><strong className="text-pink-800">Municipio:</strong> {SelectMunipality}</p>
 
                         {/* Link a Google Maps */}
                         <a
